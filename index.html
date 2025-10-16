@@ -41,59 +41,62 @@
     /* Layout */
     .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
 
-/* --- HERO SECTION (top-anchored, text always overlaid) --- */
+/* --- HERO: top-anchored image, centered overlay that always sits ON the photo --- */
 header.hero {
-  width: 100%;
   position: relative;
-  display: flex;
-  align-items: flex-end; /* keep text near bottom */
-  justify-content: flex-start;
-  min-height: 55vh;
-
-  /* wide screens: cinematic crop, anchored at top */
+  width: 100%;
+  min-height: clamp(40vh, 55vw, 65vh); /* reasonable default height */
   background:
     linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
     var(--hero-image, url('hero.jpg')) top center/cover no-repeat;
-
   color: #fff;
 }
 
-/* portrait / tall screens: show full image, still overlay text */
+/* Portrait / tall screens: show full image (no crop), keep overlay on top */
 @media (max-aspect-ratio: 3/4) {
   header.hero {
+    min-height: 55vh; /* ensure enough vertical space for the overlay */
     background:
       linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
       var(--hero-image, url('hero.jpg')) top center/contain no-repeat;
-    background-color: #000;
+    background-color: #000; /* letterbox fill */
   }
 }
 
-/* overlay block */
-header.hero .brand {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: clamp(1rem, 3vw, 2rem);
-  background: rgba(0, 0, 0, 0.35); /* faint backdrop for readability */
-  backdrop-filter: blur(2px);
-  border-top-right-radius: 0.5rem;
+/* Landscape: keep it from being too tall */
+@media (orientation: landscape) {
+  header.hero {
+    min-height: 42vh;
+  }
 }
 
-/* Band name */
+/* Overlay block: centered horizontally, near the bottom */
+header.hero .brand {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1rem, 3vh, 2rem);
+  transform: translateX(-50%);
+  text-align: center;
+  padding: clamp(0.75rem, 2.5vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(2px);
+  border-radius: .5rem;
+  max-width: min(90%, 42rem);
+  z-index: 1;
+}
+
+/* Headline & tagline sizes */
 header.hero .brand h1 {
   margin: 0 0 .25rem 0;
-  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
   letter-spacing: .02em;
 }
 
-/* Tagline text */
 header.hero .brand p {
   margin: .25rem 0 0 0;
-  font-size: clamp(1rem, 2.2vw, 1.125rem);
+  font-size: clamp(1rem, 2.6vw, 1.125rem);
   color: #f4f4f8;
-  max-width: 42rem;
-}
-    
+}    
     
     .brand {
       padding: clamp(1.25rem, 3vw, 2rem) var(--pad);
