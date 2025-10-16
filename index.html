@@ -41,15 +41,16 @@
     /* Layout */
     .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
 
-/* --- HERO SECTION (top-anchored; anti-zoom on phones) --- */
+/* --- HERO SECTION (top-anchored, text always overlaid) --- */
 header.hero {
   width: 100%;
   position: relative;
-  display: grid;
-  place-items: end start;
+  display: flex;
+  align-items: flex-end; /* keep text near bottom */
+  justify-content: flex-start;
   min-height: 55vh;
 
-  /* Wide screens: cinematic cover, anchored to top */
+  /* wide screens: cinematic crop, anchored at top */
   background:
     linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
     var(--hero-image, url('hero.jpg')) top center/cover no-repeat;
@@ -57,19 +58,25 @@ header.hero {
   color: #fff;
 }
 
-/* Phones in portrait / tall viewports: show full image (no crop) */
+/* portrait / tall screens: show full image, still overlay text */
 @media (max-aspect-ratio: 3/4) {
   header.hero {
     background:
       linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
       var(--hero-image, url('hero.jpg')) top center/contain no-repeat;
-    background-color: #000; /* fills letterboxing */
+    background-color: #000;
   }
 }
 
-/* Text block inside the hero */
+/* overlay block */
 header.hero .brand {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   padding: clamp(1rem, 3vw, 2rem);
+  background: rgba(0, 0, 0, 0.35); /* faint backdrop for readability */
+  backdrop-filter: blur(2px);
+  border-top-right-radius: 0.5rem;
 }
 
 /* Band name */
@@ -85,7 +92,7 @@ header.hero .brand p {
   font-size: clamp(1rem, 2.2vw, 1.125rem);
   color: #f4f4f8;
   max-width: 42rem;
-}    
+}
     
     
     .brand {
