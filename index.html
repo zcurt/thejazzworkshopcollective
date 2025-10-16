@@ -240,6 +240,44 @@
       #coach .coach-block { flex-direction: column; align-items: center; text-align: center; }
       #coach .coach-photo img { width: 70%; max-width: 250px; }
     }
+
+/* --- FIX: iPhone portrait — keep text ON the photo --- */
+@media screen and (orientation: portrait) and (max-width: 500px) {
+  /* Give the hero more vertical space so the overlay fits on the image area */
+  header.hero {
+    min-height: 72dvh;      /* dynamic viewport height; use 70–80dvh if you need more/less */
+    background-color: #000; /* fills letterbox bands */
+  }
+
+  /* Ensure the overlay stays positioned over the image and centered */
+  header.hero .brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1rem;           /* nudge up/down as you like */
+    z-index: 3;             /* over the gradient */
+
+    /* Wider box in portrait */
+    width: 96vw;
+    max-width: none;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  /* Keep the photo fully visible (no crop) in portrait */
+  header.hero .hero-media img {
+    object-fit: contain;
+    object-position: top center;
+  }
+
+  /* Slightly smaller type to fit the shorter vertical space */
+  header.hero .brand h1 { font-size: clamp(1.2rem, 4.2vw, 1.8rem); }
+  header.hero .brand .tagline { font-size: clamp(0.85rem, 3.2vw, 1rem); }
+}
+
+    
   </style>
 </head>
 <body>
