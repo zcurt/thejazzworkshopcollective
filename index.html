@@ -41,7 +41,7 @@
     /* Layout */
     .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
 
-/* --- HERO: top-anchored image, full in portrait/landscape, responsive text overlay --- */
+/* --- HERO: responsive full-photo banner with scaled overlay --- */
 header.hero {
   position: relative;
   width: 100%;
@@ -52,7 +52,7 @@ header.hero {
   color: #fff;
 }
 
-/* Portrait: full image */
+/* Portrait: full image, anchored top */
 @media (max-aspect-ratio: 3/4) {
   header.hero {
     background:
@@ -73,7 +73,7 @@ header.hero {
   }
 }
 
-/* Overlay block */
+/* Overlay box */
 header.hero .brand {
   position: absolute;
   left: 50%;
@@ -88,38 +88,39 @@ header.hero .brand {
   z-index: 1;
 }
 
-/* Default font sizes */
+/* Base font sizes */
 header.hero .brand h1 {
   margin: 0 0 .25rem 0;
   font-size: clamp(1.8rem, 5vw, 2.75rem);
 }
-
 header.hero .brand p {
   margin: .25rem 0 0 0;
   font-size: clamp(1rem, 2.6vw, 1.25rem);
   color: #f4f4f8;
 }
 
-/* If the image height is short (less than ~50vh), shrink text */
+/* Short viewports (landscape, split-screen) */
 @media (max-height: 600px) {
-  header.hero .brand h1 {
-    font-size: clamp(1.4rem, 3.5vw, 2.1rem);
-  }
-  header.hero .brand p {
-    font-size: clamp(0.9rem, 2vw, 1rem);
-  }
+  header.hero .brand h1 { font-size: clamp(1.4rem, 3.5vw, 2.1rem); }
+  header.hero .brand p { font-size: clamp(0.9rem, 2vw, 1rem); }
 }
-
-/* For very short viewports (like split-screen or landscape phones) */
 @media (max-height: 450px) {
-  header.hero .brand h1 {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-  }
-  header.hero .brand p {
-    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
-  }
+  header.hero .brand h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
+  header.hero .brand p { font-size: clamp(0.8rem, 1.8vw, 0.95rem); }
 }
 
+/* 🧭 Portrait iPhones: text a bit smaller and overlay padding tighter */
+@media (orientation: portrait) and (max-width: 480px) {
+  header.hero .brand {
+    padding: 0.75rem 1rem;
+  }
+  header.hero .brand h1 {
+    font-size: clamp(1.2rem, 4.2vw, 1.8rem);
+  }
+  header.hero .brand p {
+    font-size: clamp(0.85rem, 3.2vw, 1rem);
+  }
+}
     
     .brand {
       padding: clamp(1.25rem, 3vw, 2rem) var(--pad);
