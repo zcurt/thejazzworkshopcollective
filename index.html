@@ -62,7 +62,7 @@ header.hero {
   }
 }
 
-/* Landscape phones: full image, less cropping */
+/* Landscape phones: show full image, less cropping */
 @media (orientation: landscape) and (max-width: 900px) {
   header.hero {
     background:
@@ -99,7 +99,7 @@ header.hero .brand p {
   color: #f4f4f8;
 }
 
-/* Short viewports (landscape, split-screen) */
+/* Short viewports */
 @media (max-height: 600px) {
   header.hero .brand h1 { font-size: clamp(1.4rem, 3.5vw, 2.1rem); }
   header.hero .brand p { font-size: clamp(0.9rem, 2vw, 1rem); }
@@ -109,10 +109,11 @@ header.hero .brand p {
   header.hero .brand p { font-size: clamp(0.8rem, 1.8vw, 0.95rem); }
 }
 
-/* 🧭 Portrait iPhones: text a bit smaller and overlay padding tighter */
+/* 🧭 Portrait iPhones: smaller text, wider overlay */
 @media (orientation: portrait) and (max-width: 480px) {
   header.hero .brand {
     padding: 0.75rem 1rem;
+    max-width: 95%;        /* wider box for narrow phones */
   }
   header.hero .brand h1 {
     font-size: clamp(1.2rem, 4.2vw, 1.8rem);
