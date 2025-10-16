@@ -11,7 +11,7 @@
   <style>
     /* ------ Quick setup: set your hero image here ------ */
     :root {
-      --hero-image: url('IMG_8513.jpeg'); /* ← replace with your image path if you prefer CSS-driven */
+      --hero-image: url('IMG_8513.jpeg'); /* optional if you use the script below */
       --bg: #0f0f11;
       --fg: #f5f7fa;
       --muted: #b8c0cc;
@@ -41,13 +41,14 @@
     /* Layout */
     .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
 
-    /* --- HERO (robust: real <img> + gradient + centered overlay) --- */
+    /* --- HERO (robust: <img> + gradient + centered overlay) --- */
     header.hero {
       position: relative;
       width: 100%;
-      min-height: clamp(45vh, 60vw, 70vh); /* sensible default */
+      min-height: clamp(45vh, 60vw, 70vh);
       color: #fff;
       overflow: hidden;
+      background-color:#000; /* fills letterbox bands when image is contained */
     }
     /* Image layer */
     header.hero .hero-media {
@@ -59,14 +60,14 @@
       display:block;
       width:100%;
       height:100%;
-      object-position: top center;  /* keep top of photo visible */
-      object-fit: cover;            /* desktop/tablet: cinematic banner */
+      object-position: top center;  /* keep top in view */
+      object-fit: cover;            /* desktop/tablet: cinematic */
     }
     /* Gradient overlay */
     header.hero .hero-media::after {
       content:"";
       position:absolute;
-      top:0; right:0; bottom:0; left:0;
+      inset:0;
       background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55));
       pointer-events:none;
       z-index:1;
@@ -75,8 +76,8 @@
     header.hero .brand {
       position: absolute;
       left: 50%;
-      bottom: clamp(1rem, 3vh, 2.5rem);
       transform: translateX(-50%);
+      bottom: 1.25rem; /* JS will adjust this in portrait so it hugs the photo edge */
       text-align: center;
       padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2.5rem);
       background: rgba(0,0,0,0.35);
@@ -84,9 +85,8 @@
       border-radius: .5rem;
       max-width: min(98%, 60rem);
       z-index: 2;
+      line-height: 1.25;
     }
-    /* Ensure the global .brand padding doesn't affect the hero overlay */
-    header.hero .brand { padding-left: clamp(1.5rem, 4vw, 2.5rem); padding-right: clamp(1.5rem, 4vw, 2.5rem); }
 
     /* Base hero type */
     header.hero .brand h1 {
@@ -103,12 +103,13 @@
       opacity: .95;
     }
 
-    /* Portrait phones: show the FULL image, widen box, shrink fonts slightly */
+    /* Portrait phones: show the FULL image & widen box; fonts slightly smaller */
     @media (orientation: portrait) and (max-width: 500px) {
-      header.hero { background-color:#000; }
-      header.hero .hero-media img { object-fit: contain; } /* less cropping = see whole photo */
+      header.hero .hero-media img { object-fit: contain; } /* no crop */
+      header.hero { min-height: 70dvh; } /* space for overlay on-photo */
+
       header.hero .brand {
-        width: 96vw;      /* force wider overlay box */
+        width: 96vw;      /* wide overlay */
         max-width: none;
         padding: 0.75rem 1rem;
       }
@@ -116,9 +117,9 @@
       header.hero .brand .tagline { font-size: clamp(0.85rem, 3.2vw, 1rem); }
     }
 
-    /* Landscape on phones: also show more of photo and give it height */
+    /* Landscape phones: show more of photo and give it height */
     @media (orientation: landscape) and (max-width: 900px) {
-      header.hero { min-height: 70vh; background-color:#000; }
+      header.hero { min-height: 70vh; }
       header.hero .hero-media img { object-fit: contain; }
     }
 
@@ -132,8 +133,8 @@
       header.hero .brand .tagline { font-size: clamp(0.8rem, 1.8vw, 0.95rem); }
     }
 
-    /* Non-hero brand block (used elsewhere) */
-    .brand { padding: clamp(1.25rem, 3vw, 2rem) var(--pad); } /* overwritten inside hero */
+    /* Non-hero brand block elsewhere (kept for your site style) */
+    .brand { padding: clamp(1.25rem, 3vw, 2rem) var(--pad); } /* not applied inside hero due to absolute */
 
     nav.site {
       background: transparent;
@@ -240,51 +241,12 @@
       #coach .coach-block { flex-direction: column; align-items: center; text-align: center; }
       #coach .coach-photo img { width: 70%; max-width: 250px; }
     }
-
-/* --- FIX: iPhone portrait — keep text ON the photo --- */
-@media screen and (orientation: portrait) and (max-width: 500px) {
-  /* Give the hero more vertical space so the overlay fits on the image area */
-  header.hero {
-    min-height: 72dvh;      /* dynamic viewport height; use 70–80dvh if you need more/less */
-    background-color: #000; /* fills letterbox bands */
-  }
-
-  /* Ensure the overlay stays positioned over the image and centered */
-  header.hero .brand {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 1rem;           /* nudge up/down as you like */
-    z-index: 3;             /* over the gradient */
-
-    /* Wider box in portrait */
-    width: 96vw;
-    max-width: none;
-    box-sizing: border-box;
-    padding: 0.75rem 1rem;
-    text-align: center;
-    line-height: 1.25;
-  }
-
-  /* Keep the photo fully visible (no crop) in portrait */
-  header.hero .hero-media img {
-    object-fit: contain;
-    object-position: top center;
-  }
-
-  /* Slightly smaller type to fit the shorter vertical space */
-  header.hero .brand h1 { font-size: clamp(1.2rem, 4.2vw, 1.8rem); }
-  header.hero .brand .tagline { font-size: clamp(0.85rem, 3.2vw, 1rem); }
-}
-
-    
   </style>
 </head>
 <body>
-  <!-- HERO with real <img> for reliable scaling -->
+  <!-- HERO -->
   <header class="hero" role="banner" aria-label="Band hero image">
     <div class="hero-media">
-      <!-- You can hardcode your src OR keep using the CSS var via the tiny script below -->
       <img src="IMG_8513.jpeg" alt="The Jazz Workshop Collective performing live">
     </div>
     <div class="brand" aria-label="Site heading">
@@ -300,7 +262,6 @@
       <a href="#members">Band Members</a>
       <a href="#performances">Performances</a>
       <a href="#coach">Coach</a>
-      <!-- <a href="#contact">Contact</a> -->
     </div>
   </nav>
 
@@ -357,12 +318,9 @@
         <h2 class="section-title">Coach</h2>
 
         <div class="coach-block">
-          <!-- Photo of Chris Bates -->
           <div class="coach-photo">
             <img src="IMG_0089.jpeg" alt="Chris Bates coaching The Jazz Workshop Collective">
           </div>
-
-          <!-- Text about coach and origin -->
           <div class="coach-text">
             <p>
               Coached by
@@ -389,20 +347,60 @@
   </footer>
 
   <script>
-    // Keep the footer year current
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // OPTIONAL: If you want to set the hero <img> from the CSS var (--hero-image)
-    // instead of the hardcoded src above, uncomment this block:
+    // OPTIONAL: Set hero <img> from --hero-image var instead of hardcoded src
+    // (uncomment to use the CSS var as single source of truth)
     /*
     document.addEventListener('DOMContentLoaded', () => {
       const raw = getComputedStyle(document.documentElement)
-        .getPropertyValue('--hero-image').trim(); // e.g., url('IMG_8513.jpeg')
+        .getPropertyValue('--hero-image').trim();
       const url = raw.replace(/^url\((.*)\)$/, '$1').replaceAll('"','').replaceAll("'","");
       const img = document.querySelector('header.hero .hero-media img');
       if (img && url) img.src = url;
     });
     */
+
+    // Precise overlay placement in PORTRAIT: hugs the visible bottom of the image
+    function placeOverlay() {
+      const hero   = document.querySelector('header.hero');
+      const media  = hero?.querySelector('.hero-media');
+      const img    = media?.querySelector('img');
+      const brand  = hero?.querySelector('.brand');
+      if (!hero || !media || !img || !brand) return;
+
+      // Only adjust when we're in portrait AND using object-fit: contain
+      const isPortrait = window.matchMedia('(orientation: portrait)').matches && window.innerWidth <= 500;
+      if (!isPortrait) {
+        brand.style.bottom = '1.25rem'; // default
+        return;
+      }
+
+      // Make sure we have natural dimensions
+      if (!img.complete || !img.naturalWidth || !img.naturalHeight) {
+        img.addEventListener('load', placeOverlay, { once: true });
+        return;
+      }
+
+      const rect = media.getBoundingClientRect();
+      const cw = rect.width, ch = rect.height;
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+
+      // Scale to "contain"
+      const scale = Math.min(cw / iw, ch / ih);
+      const renderedH = ih * scale;
+      const letterbox = (ch - renderedH) / 2; // black bar above & below
+
+      // Pin overlay to bottom edge of the visible image (plus a small offset)
+      const offset = 12; // px
+      const bottom = Math.max(letterbox + offset, 8);
+      brand.style.bottom = bottom + 'px';
+    }
+
+    window.addEventListener('resize', placeOverlay);
+    window.addEventListener('orientationchange', placeOverlay);
+    document.addEventListener('DOMContentLoaded', placeOverlay);
   </script>
 </body>
 </html>
