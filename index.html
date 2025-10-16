@@ -41,85 +41,31 @@
     /* Layout */
     .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
 
-/* --- HERO: responsive full-photo banner with scaled overlay --- */
-header.hero {
-  position: relative;
-  width: 100%;
-  min-height: clamp(45vh, 60vw, 70vh);
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
-    var(--hero-image, url('hero.jpg')) top center/cover no-repeat;
-  color: #fff;
-}
-
-/* Portrait: full image, anchored top */
-@media (max-aspect-ratio: 3/4) {
-  header.hero {
-    background:
-      linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
-      var(--hero-image, url('hero.jpg')) top center/contain no-repeat;
-    background-color: #000;
-  }
-}
-
-/* Landscape phones: show full image, less cropping */
-@media (orientation: landscape) and (max-width: 900px) {
-  header.hero {
-    background:
-      linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
-      var(--hero-image, url('hero.jpg')) top center/contain no-repeat;
-    background-color: #000;
-    min-height: 70vh;
-  }
-}
-
-/* Overlay box */
-header.hero .brand {
-  position: absolute;
-  left: 50%;
-  bottom: clamp(1rem, 3vh, 2.5rem);
-  transform: translateX(-50%);
-  text-align: center;
-  padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2.5rem);
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(2px);
-  border-radius: 0.5rem;
-  max-width: min(98%, 60rem);
-  z-index: 1;
-}
-
-/* Base font sizes */
-header.hero .brand h1 {
-  margin: 0 0 .25rem 0;
-  font-size: clamp(1.8rem, 5vw, 2.75rem);
-}
-header.hero .brand p {
-  margin: .25rem 0 0 0;
-  font-size: clamp(1rem, 2.6vw, 1.25rem);
-  color: #f4f4f8;
-}
-
-/* Short viewports */
-@media (max-height: 600px) {
-  header.hero .brand h1 { font-size: clamp(1.4rem, 3.5vw, 2.1rem); }
-  header.hero .brand p { font-size: clamp(0.9rem, 2vw, 1rem); }
-}
-@media (max-height: 450px) {
-  header.hero .brand h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
-  header.hero .brand p { font-size: clamp(0.8rem, 1.8vw, 0.95rem); }
-}
-
-/* 🧭 Portrait iPhones: smaller text, wider overlay */
-@media (orientation: portrait) and (max-width: 480px) {
+/* iPhone portrait: make the overlay box MUCH wider */
+@media screen and (orientation: portrait) and (max-width: 500px) {
   header.hero .brand {
-    padding: 0.75rem 1rem;
-    max-width: 95%;        /* wider box for narrow phones */
+    /* center */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* force width to fill the image area */
+    width: 96vw;          /* << wider box */
+    max-width: none;      /* ignore earlier max-width limits */
+    box-sizing: border-box;
+
+    /* tighten padding so the height stays reasonable */
+    padding: 0.75rem 1.25rem;
+
+    /* keep text compact */
+    line-height: 1.25;
   }
+
   header.hero .brand h1 {
-    font-size: clamp(1.2rem, 4.2vw, 1.8rem);
+    font-size: clamp(1.15rem, 4vw, 1.7rem);
   }
   header.hero .brand p {
-    font-size: clamp(0.85rem, 3.2vw, 1rem);
+    font-size: clamp(0.85rem, 3.3vw, 1rem);
   }
 }
     
