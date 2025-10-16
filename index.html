@@ -70,34 +70,64 @@ header.hero {
   }
 }
 
-/* Overlay block: centered horizontally, near the bottom */
+/* --- HERO: top-anchored, shows full image in portrait and landscape, text always overlaid --- */
+header.hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(45vh, 60vw, 70vh);
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+    var(--hero-image, url('hero.jpg')) top center/cover no-repeat;
+  color: #fff;
+}
+
+/* Portrait: show full image */
+@media (max-aspect-ratio: 3/4) {
+  header.hero {
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+      var(--hero-image, url('hero.jpg')) top center/contain no-repeat;
+    background-color: #000;
+  }
+}
+
+/* Landscape on phones: show more of photo (less crop) */
+@media (orientation: landscape) and (max-width: 900px) {
+  header.hero {
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+      var(--hero-image, url('hero.jpg')) top center/contain no-repeat;
+    background-color: #000;
+    min-height: 70vh; /* taller frame for full image */
+  }
+}
+
+/* Overlay box centered horizontally */
 header.hero .brand {
   position: absolute;
   left: 50%;
-  bottom: clamp(1rem, 3vh, 2rem);
+  bottom: clamp(1rem, 3vh, 2.5rem);
   transform: translateX(-50%);
   text-align: center;
-  padding: clamp(0.75rem, 2.5vw, 1rem) clamp(1rem, 3vw, 1.5rem);
-  background: rgba(0,0,0,0.35);
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2.5rem);
+  background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(2px);
-  border-radius: .5rem;
-  max-width: min(90%, 42rem);
+  border-radius: 0.5rem;
+  max-width: min(98%, 60rem); /* wider text box */
   z-index: 1;
 }
 
-/* Headline & tagline sizes */
+/* Headline & tagline */
 header.hero .brand h1 {
   margin: 0 0 .25rem 0;
-  font-size: clamp(1.6rem, 5vw, 2.6rem);
-  letter-spacing: .02em;
+  font-size: clamp(1.8rem, 5vw, 2.75rem);
 }
 
 header.hero .brand p {
   margin: .25rem 0 0 0;
-  font-size: clamp(1rem, 2.6vw, 1.125rem);
+  font-size: clamp(1rem, 2.6vw, 1.25rem);
   color: #f4f4f8;
 }    
-    
     .brand {
       padding: clamp(1.25rem, 3vw, 2rem) var(--pad);
     }
