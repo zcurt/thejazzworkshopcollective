@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Workshop Collective — Straight-Ahead Jazz Combo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The Workshop Collective is a straight-ahead jazz combo in the tradition of jazz standards and the Great American Songbook." />
+  <meta property="og:title" content="The Workshop Collective" />
+  <meta property="og:description" content="Straight-ahead jazz combo in the tradition of jazz standards and the Great American Songbook." />
+  <meta property="og:type" content="website" />
+  <style>
+    /* ------ Quick setup: set your hero image here ------ */
+    :root {
+      --hero-image: url('hero.jpg'); /* ← replace with your image path */
+      --bg: #0f0f11;
+      --fg: #f5f7fa;
+      --muted: #b8c0cc;
+      --accent: #ffd166;
+      --card: #17181b;
+      --link: #7abaff;
+      --maxw: 72rem;
+      --pad: clamp(1rem, 2vw + .5rem, 2rem);
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#ffffff; --fg:#0d0f12; --muted:#5b6470; --card:#f5f7fb; --link:#0057d9; }
+    }
+
+    /* Global reset/typography */
+    *, *::before, *::after { box-sizing: border-box }
+    html, body { margin:0; padding:0; height:100% }
+    body {
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--link); text-decoration: none }
+    a:hover, a:focus { text-decoration: underline }
+
+    /* Layout */
+    .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
+    header.hero {
+      /* Full-bleed hero occupying ~top third of the viewport */
+      min-height: 34vh;
+      background-image:
+        linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.45)),
+        var(--hero-image);
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: grid;
+      align-items: end;
+    }
+    .brand {
+      padding: clamp(1.25rem, 3vw, 2rem) var(--pad);
+    }
+    .brand h1 {
+      margin: 0 0 .25rem 0;
+      font-weight: 800;
+      letter-spacing: .5px;
+      line-height: 1.1;
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+    }
+    .tagline {
+      margin: 0;
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: #f0f3f8;
+      opacity: .95;
+    }
+
+    nav.site {
+      background: transparent;
+      position: sticky;
+      top: 0;
+      border-bottom: 1px solid rgba(128,128,128,.15);
+      backdrop-filter: blur(6px);
+    }
+    nav .inner {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: .6rem var(--pad);
+      overflow-x: auto;
+    }
+    nav a {
+      padding: .4rem .6rem;
+      border-radius: .5rem;
+      color: var(--fg);
+      white-space: nowrap;
+    }
+    nav a:hover { background: rgba(128,128,128,.12) }
+
+    section { padding: clamp(1.75rem, 4vw, 3rem) 0 }
+    section .section-title {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      margin: 0 0 .75rem 0;
+      letter-spacing: .3px;
+    }
+    .lede {
+      color: var(--muted);
+      max-width: 60ch;
+      margin: .25rem 0 0 0;
+    }
+
+    /* Cards & lists */
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(128,128,128,.15);
+      border-radius: 12px;
+      padding: clamp(1rem, 2.5vw, 1.25rem);
+    }
+    .grid {
+      display: grid;
+      gap: clamp(1rem, 2vw, 1.25rem);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 800px) {
+      .grid-2 { grid-template-columns: 1fr 1fr }
+    }
+    ul.clean {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: .5rem;
+    }
+    ul.clean li {
+      padding: .6rem .75rem;
+      border-radius: .6rem;
+      background: rgba(128,128,128,.08);
+      border: 1px solid rgba(128,128,128,.15);
+    }
+    .muted { color: var(--muted) }
+    .coach {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem .75rem;
+      background: rgba(255, 209, 102, .12);
+      border: 1px dashed rgba(255, 209, 102, .6);
+      border-radius: .5rem;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(128,128,128,.15);
+    }
+
+    /* Small utility to let you set hero image inline if you prefer:
+       <header class="hero" style="--hero-image:url('myphoto.jpg')"> … </header> */
+  </style>
+</head>
+<body>
+  <!-- Full-bleed hero (top third). Replace the background image via --hero-image. -->
+  <header class="hero" role="banner">
+    <div class="brand wrap" aria-label="Site heading">
+      <h1>The Workshop Collective</h1>
+      <p class="tagline">Straight-ahead jazz combo in the tradition of jazz standards and the Great American Songbook.</p>
+    </div>
+  </header>
+
+  <!-- Simple in-page nav -->
+  <nav class="site" aria-label="Primary">
+    <div class="inner wrap">
+      <a href="#about">About</a>
+      <a href="#members">Band Members</a>
+      <a href="#performances">Past Performances</a>
+      <a href="#coach">Coach</a>
+      <!-- <a href="#contact">Contact</a> -->
+    </div>
+  </nav>
+
+  <main id="content">
+    <section id="about">
+      <div class="wrap">
+        <h2 class="section-title">About</h2>
+        <p class="lede">
+          The Workshop Collective plays repertoire rooted in the language of swing, bebop, and modern standards—celebrating melodies and forms from the Great American Songbook while leaving room for conversation, risk, and joy.
+        </p>
+      </div>
+    </section>
+
+    <section id="members">
+      <div class="wrap">
+        <h2 class="section-title">Band Members</h2>
+        <div class="card">
+          <ul class="clean" aria-label="Band roster">
+            <!-- Replace placeholder items with your lineup -->
+            <li><strong>Alto Saxophone</strong> — <span class="muted">Name Here</span></li>
+            <li><strong>Tenor Saxophone</strong> — <span class="muted">Name Here</span></li>
+            <li><strong>Trumpet</strong> — <span class="muted">Name Here</span></li>
+            <li><strong>Piano</strong> — <span class="muted">Name Here</span></li>
+            <li><strong>Bass</strong> — <span class="muted">Name Here</span></li>
+            <li><strong>Drums</strong> — <span class="muted">Name Here</span></li>
+            <!-- Add more (guitar, vocals, etc.) as needed -->
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="performances">
+      <div class="wrap">
+        <h2 class="section-title">Past Performances</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <ul class="clean" aria-label="Recent shows">
+              <!-- Duplicate <li> blocks for each gig. Keep most-recent at top. -->
+              <li><strong>2025-10-04</strong> — Jazz Central Studios, Minneapolis, MN</li>
+              <li><strong>2025-08-22</strong> — Apple Blossom Orchard Series, Stillwater, MN</li>
+              <li><strong>2025-06-15</strong> — River North Brewery, Minneapolis, MN</li>
+            </ul>
+          </div>
+          <div class="card">
+            <!-- Optional notes or festivals; or leave this card out -->
+            <p class="muted">Add venue links, festival notes, or set highlights here.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="coach">
+      <div class="wrap">
+        <h2 class="section-title">Coach & Mentorship</h2>
+        <p class="coach" role="note" aria-label="Coach reference">
+          Mentored by <a href="https://doublebates.com/" target="_blank" rel="noopener">Chris Bates</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© <span id="year"></span> The Workshop Collective. All rights reserved.</p>
+      <!-- Optional contact line:
+      <p>Booking & inquiries: <a href="mailto:workshopcollective@example.com">workshopcollective@example.com</a></p>
+      -->
+    </div>
+  </footer>
+
+  <script>
+    // Tiny helper to keep the footer year current (no external deps).
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
