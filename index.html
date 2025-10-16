@@ -41,36 +41,7 @@
     /* Layout */
     .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
 
-/* --- HERO: top-anchored image, centered overlay that always sits ON the photo --- */
-header.hero {
-  position: relative;
-  width: 100%;
-  min-height: clamp(40vh, 55vw, 65vh); /* reasonable default height */
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
-    var(--hero-image, url('hero.jpg')) top center/cover no-repeat;
-  color: #fff;
-}
-
-/* Portrait / tall screens: show full image (no crop), keep overlay on top */
-@media (max-aspect-ratio: 3/4) {
-  header.hero {
-    min-height: 55vh; /* ensure enough vertical space for the overlay */
-    background:
-      linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
-      var(--hero-image, url('hero.jpg')) top center/contain no-repeat;
-    background-color: #000; /* letterbox fill */
-  }
-}
-
-/* Landscape: keep it from being too tall */
-@media (orientation: landscape) {
-  header.hero {
-    min-height: 42vh;
-  }
-}
-
-/* --- HERO: top-anchored, shows full image in portrait and landscape, text always overlaid --- */
+/* --- HERO: top-anchored image, full in portrait/landscape, responsive text overlay --- */
 header.hero {
   position: relative;
   width: 100%;
@@ -81,7 +52,7 @@ header.hero {
   color: #fff;
 }
 
-/* Portrait: show full image */
+/* Portrait: full image */
 @media (max-aspect-ratio: 3/4) {
   header.hero {
     background:
@@ -91,18 +62,18 @@ header.hero {
   }
 }
 
-/* Landscape on phones: show more of photo (less crop) */
+/* Landscape phones: full image, less cropping */
 @media (orientation: landscape) and (max-width: 900px) {
   header.hero {
     background:
       linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
       var(--hero-image, url('hero.jpg')) top center/contain no-repeat;
     background-color: #000;
-    min-height: 70vh; /* taller frame for full image */
+    min-height: 70vh;
   }
 }
 
-/* Overlay box centered horizontally */
+/* Overlay block */
 header.hero .brand {
   position: absolute;
   left: 50%;
@@ -113,11 +84,11 @@ header.hero .brand {
   background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(2px);
   border-radius: 0.5rem;
-  max-width: min(98%, 60rem); /* wider text box */
+  max-width: min(98%, 60rem);
   z-index: 1;
 }
 
-/* Headline & tagline */
+/* Default font sizes */
 header.hero .brand h1 {
   margin: 0 0 .25rem 0;
   font-size: clamp(1.8rem, 5vw, 2.75rem);
@@ -127,7 +98,29 @@ header.hero .brand p {
   margin: .25rem 0 0 0;
   font-size: clamp(1rem, 2.6vw, 1.25rem);
   color: #f4f4f8;
-}    
+}
+
+/* If the image height is short (less than ~50vh), shrink text */
+@media (max-height: 600px) {
+  header.hero .brand h1 {
+    font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+  }
+  header.hero .brand p {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+  }
+}
+
+/* For very short viewports (like split-screen or landscape phones) */
+@media (max-height: 450px) {
+  header.hero .brand h1 {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+  }
+  header.hero .brand p {
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+  }
+}
+
+    
     .brand {
       padding: clamp(1.25rem, 3vw, 2rem) var(--pad);
     }
