@@ -11,7 +11,7 @@
   <style>
     /* ------ Quick setup: set your hero image here ------ */
     :root {
-      --hero-image: url('IMG_8513.jpeg'); /* ← replace with your image path */
+      --hero-image: url('IMG_8513.jpeg'); /* ← replace with your image path if you prefer CSS-driven */
       --bg: #0f0f11;
       --fg: #f5f7fa;
       --muted: #b8c0cc;
@@ -41,50 +41,99 @@
     /* Layout */
     .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
 
-/* iPhone portrait: make the overlay box MUCH wider */
-@media screen and (orientation: portrait) and (max-width: 500px) {
-  header.hero .brand {
-    /* center */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-
-    /* force width to fill the image area */
-    width: 96vw;          /* << wider box */
-    max-width: none;      /* ignore earlier max-width limits */
-    box-sizing: border-box;
-
-    /* tighten padding so the height stays reasonable */
-    padding: 0.75rem 1.25rem;
-
-    /* keep text compact */
-    line-height: 1.25;
-  }
-
-  header.hero .brand h1 {
-    font-size: clamp(1.15rem, 4vw, 1.7rem);
-  }
-  header.hero .brand p {
-    font-size: clamp(0.85rem, 3.3vw, 1rem);
-  }
-}
-    
-    .brand {
-      padding: clamp(1.25rem, 3vw, 2rem) var(--pad);
+    /* --- HERO (robust: real <img> + gradient + centered overlay) --- */
+    header.hero {
+      position: relative;
+      width: 100%;
+      min-height: clamp(45vh, 60vw, 70vh); /* sensible default */
+      color: #fff;
+      overflow: hidden;
     }
-    .brand h1 {
+    /* Image layer */
+    header.hero .hero-media {
+      position: absolute;
+      top:0; right:0; bottom:0; left:0;
+      z-index: 0;
+    }
+    header.hero .hero-media img {
+      display:block;
+      width:100%;
+      height:100%;
+      object-position: top center;  /* keep top of photo visible */
+      object-fit: cover;            /* desktop/tablet: cinematic banner */
+    }
+    /* Gradient overlay */
+    header.hero .hero-media::after {
+      content:"";
+      position:absolute;
+      top:0; right:0; bottom:0; left:0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55));
+      pointer-events:none;
+      z-index:1;
+    }
+    /* Text overlay */
+    header.hero .brand {
+      position: absolute;
+      left: 50%;
+      bottom: clamp(1rem, 3vh, 2.5rem);
+      transform: translateX(-50%);
+      text-align: center;
+      padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2.5rem);
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(2px);
+      border-radius: .5rem;
+      max-width: min(98%, 60rem);
+      z-index: 2;
+    }
+    /* Ensure the global .brand padding doesn't affect the hero overlay */
+    header.hero .brand { padding-left: clamp(1.5rem, 4vw, 2.5rem); padding-right: clamp(1.5rem, 4vw, 2.5rem); }
+
+    /* Base hero type */
+    header.hero .brand h1 {
       margin: 0 0 .25rem 0;
       font-weight: 800;
       letter-spacing: .5px;
       line-height: 1.1;
-      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      font-size: clamp(1.8rem, 5vw, 2.75rem);
     }
-    .tagline {
+    header.hero .brand .tagline {
       margin: 0;
-      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      font-size: clamp(1rem, 2.6vw, 1.25rem);
       color: #f0f3f8;
       opacity: .95;
     }
+
+    /* Portrait phones: show the FULL image, widen box, shrink fonts slightly */
+    @media (orientation: portrait) and (max-width: 500px) {
+      header.hero { background-color:#000; }
+      header.hero .hero-media img { object-fit: contain; } /* less cropping = see whole photo */
+      header.hero .brand {
+        width: 96vw;      /* force wider overlay box */
+        max-width: none;
+        padding: 0.75rem 1rem;
+      }
+      header.hero .brand h1 { font-size: clamp(1.2rem, 4.2vw, 1.8rem); }
+      header.hero .brand .tagline { font-size: clamp(0.85rem, 3.2vw, 1rem); }
+    }
+
+    /* Landscape on phones: also show more of photo and give it height */
+    @media (orientation: landscape) and (max-width: 900px) {
+      header.hero { min-height: 70vh; background-color:#000; }
+      header.hero .hero-media img { object-fit: contain; }
+    }
+
+    /* Short viewports (split-screen/tiny windows) */
+    @media (max-height: 600px) {
+      header.hero .brand h1 { font-size: clamp(1.4rem, 3.5vw, 2.1rem); }
+      header.hero .brand .tagline { font-size: clamp(0.9rem, 2vw, 1rem); }
+    }
+    @media (max-height: 450px) {
+      header.hero .brand h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
+      header.hero .brand .tagline { font-size: clamp(0.8rem, 1.8vw, 0.95rem); }
+    }
+
+    /* Non-hero brand block (used elsewhere) */
+    .brand { padding: clamp(1.25rem, 3vw, 2rem) var(--pad); } /* overwritten inside hero */
 
     nav.site {
       background: transparent;
@@ -165,66 +214,42 @@
       border-top: 1px solid rgba(128,128,128,.15);
     }
 
-    /* Small utility to let you set hero image inline if you prefer:
-       <header class="hero" style="--hero-image:url('myphoto.jpg')"> … </header> */
-
-/* --- COACH SECTION --- */
-#coach {
-  margin: 3rem 0;
-}
-
-#coach .coach-block {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 1.5rem;
-}
-
-/* Chris Bates photo */
-#coach .coach-photo img {
-  width: 220px;          /* smaller, cleanly sized image */
-  height: auto;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-/* Text section */
-#coach .coach-text {
-  flex: 1;
-  min-width: 250px;
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-#coach .coach-text a {
-  color: var(--link);
-  text-decoration: none;
-}
-
-#coach .coach-text a:hover {
-  text-decoration: underline;
-}
-
-/* Mobile layout */
-@media (max-width: 640px) {
-  #coach .coach-block {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  #coach .coach-photo img {
-    width: 70%;
-    max-width: 250px;
-  }
-}
-
-    
+    /* --- COACH SECTION --- */
+    #coach { margin: 3rem 0; }
+    #coach .coach-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    #coach .coach-photo img {
+      width: 220px;
+      height: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    #coach .coach-text {
+      flex: 1;
+      min-width: 250px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    #coach .coach-text a { color: var(--link); text-decoration: none; }
+    #coach .coach-text a:hover { text-decoration: underline; }
+    @media (max-width: 640px) {
+      #coach .coach-block { flex-direction: column; align-items: center; text-align: center; }
+      #coach .coach-photo img { width: 70%; max-width: 250px; }
+    }
   </style>
 </head>
 <body>
-  <!-- Full-bleed hero (top third). Replace the background image via --hero-image. -->
-  <header class="hero" role="banner">
-    <div class="brand wrap" aria-label="Site heading">
+  <!-- HERO with real <img> for reliable scaling -->
+  <header class="hero" role="banner" aria-label="Band hero image">
+    <div class="hero-media">
+      <!-- You can hardcode your src OR keep using the CSS var via the tiny script below -->
+      <img src="IMG_8513.jpeg" alt="The Jazz Workshop Collective performing live">
+    </div>
+    <div class="brand" aria-label="Site heading">
       <h1>The Jazz Workshop Collective</h1>
       <p class="tagline">Straight-ahead jazz combo in the tradition of jazz standards and the Great American Songbook.</p>
     </div>
@@ -246,10 +271,9 @@
       <div class="wrap">
         <h2 class="section-title">About</h2>
         <p class="lede">
-          The Jazz Workshop Collective plays repertoire rooted in the language of swing, bebop, and modern standards—celebrating melodies and forms from the Great American Songbook 
-          while leaving room for conversation, risk, and joy.</br> </br>
-              <p>Booking & inquiries: <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a></p>
+          The Jazz Workshop Collective plays repertoire rooted in the language of swing, bebop, and modern standards—celebrating melodies and forms from the Great American Songbook while leaving room for conversation, risk, and joy.
         </p>
+        <p>Booking &amp; inquiries: <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a></p>
       </div>
     </section>
 
@@ -257,19 +281,17 @@
       <div class="wrap">
         <h2 class="section-title">Band Members</h2>
         <div class="grid grid-2">
-        <div class="card">
-          <ul class="clean" aria-label="Band roster">
-            <!-- Replace placeholder items with your lineup -->
-            <li><strong>Vocals</strong> — <span class="muted">Tory Clark</span></li>
-            <li><strong>Alto Saxophone</strong> — <span class="muted">Curt Bergmann</span></li>
-            <li><strong>Tenor Saxophone</strong> — <span class="muted">Charles Burdick</span></li>
-            <li><strong>Piano</strong> — <span class="muted">Madeline Elmhirst</span></li>
-            <li><strong>Guitar</strong> — <span class="muted">John Pohl</span></li>
-            <li><strong>Bass</strong> — <span class="muted">Aakash Chandarana</span></li>
-            <li><strong>Drums</strong> — <span class="muted">Jon Norstad</span></li>
-            <!-- Add more (guitar, vocals, etc.) as needed -->
-          </ul>
-        </div>
+          <div class="card">
+            <ul class="clean" aria-label="Band roster">
+              <li><strong>Vocals</strong> — <span class="muted">Tory Clark</span></li>
+              <li><strong>Alto Saxophone</strong> — <span class="muted">Curt Bergmann</span></li>
+              <li><strong>Tenor Saxophone</strong> — <span class="muted">Charles Burdick</span></li>
+              <li><strong>Piano</strong> — <span class="muted">Madeline Elmhirst</span></li>
+              <li><strong>Guitar</strong> — <span class="muted">John Pohl</span></li>
+              <li><strong>Bass</strong> — <span class="muted">Aakash Chandarana</span></li>
+              <li><strong>Drums</strong> — <span class="muted">Jon Norstad</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -280,7 +302,6 @@
         <div class="grid grid-2">
           <div class="card">
             <ul class="clean" aria-label="Recent shows">
-              <!-- Duplicate <li> blocks for each gig. Keep most-recent at top. -->
               <li><strong>2025-10-29</strong> — Workshop Concert Series at Metronome Brewery, St. Paul, MN</li>
               <li><strong>2025-09-13</strong> — Whistling Well Farm, Afton, MN</li>
               <li><strong>2025-08-09</strong> — Hoffman Family Fundraiser, Dual Citizen Brewery, St. Paul, MN</li>
@@ -289,54 +310,61 @@
               <li><strong>2025-03-30</strong> — Workshop Concert Series at Jazz Central Studios, St. Paul, MN</li>
             </ul>
           </div>
-            <!-- Optional notes or festivals; or leave this card out
-          <div class="card">
-            <p class="muted">Add venue links, festival notes, or set highlights here.</p>
-          </div>
-          --->
         </div>
       </div>
     </section>
 
     <section id="coach">
-  <div class="wrap">
-    <h2 class="section-title">Coach</h2>
+      <div class="wrap">
+        <h2 class="section-title">Coach</h2>
 
-    <div class="coach-block">
-      <!-- Photo of Chris Bates -->
-      <div class="coach-photo">
-        <img src="IMG_0089.jpeg" alt="Chris Bates coaching The Jazz Workshop Collective">
-      </div>
+        <div class="coach-block">
+          <!-- Photo of Chris Bates -->
+          <div class="coach-photo">
+            <img src="IMG_0089.jpeg" alt="Chris Bates coaching The Jazz Workshop Collective">
+          </div>
 
-      <!-- Text about coach and origin -->
-      <div class="coach-text">
-        <p>
-          Coached by
-          <a href="https://doublebates.com/" target="_blank" rel="noopener">Chris Bates</a>,
-          bassist, composer, and educator.
-        </p>
-        <p>
-          <strong>The Jazz Workshop Collective</strong> was formed at
-          <a href="https://www.northstarjazzworkshops.com" target="_blank" rel="noopener">North Star Jazz Workshops</a>,
-          where collaboration, listening, and exploration of the jazz tradition are at the heart of the program.
-        </p>
+          <!-- Text about coach and origin -->
+          <div class="coach-text">
+            <p>
+              Coached by
+              <a href="https://doublebates.com/" target="_blank" rel="noopener">Chris Bates</a>,
+              bassist, composer, and educator.
+            </p>
+            <p>
+              <strong>The Jazz Workshop Collective</strong> was formed at
+              <a href="https://www.northstarjazzworkshops.com" target="_blank" rel="noopener">North Star Jazz Workshops</a>,
+              where collaboration, listening, and exploration of the jazz tradition are at the heart of the program.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
   </main>
 
   <footer>
     <div class="wrap">
       <p>© <span id="year"></span> Curt Bergmann. All rights reserved.</p>
-      <p>Booking & inquiries: <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a></p>
+      <p>Booking &amp; inquiries: <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a></p>
     </div>
   </footer>
 
   <script>
-    // Tiny helper to keep the footer year current (no external deps).
+    // Keep the footer year current
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // OPTIONAL: If you want to set the hero <img> from the CSS var (--hero-image)
+    // instead of the hardcoded src above, uncomment this block:
+    /*
+    document.addEventListener('DOMContentLoaded', () => {
+      const raw = getComputedStyle(document.documentElement)
+        .getPropertyValue('--hero-image').trim(); // e.g., url('IMG_8513.jpeg')
+      const url = raw.replace(/^url\((.*)\)$/, '$1').replaceAll('"','').replaceAll("'","");
+      const img = document.querySelector('header.hero .hero-media img');
+      if (img && url) img.src = url;
+    });
+    */
   </script>
 </body>
 </html>
