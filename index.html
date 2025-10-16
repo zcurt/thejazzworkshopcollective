@@ -40,18 +40,43 @@
 
     /* Layout */
     .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
+
+    /* --- HERO SECTION --- */
     header.hero {
-      /* Full-bleed hero occupying ~top third of the viewport */
-      min-height: 34vh;
-      background-image:
-        linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.45)),
-        var(--hero-image);
-      background-size: cover;
-      background-position: center;
-      color: white;
+      min-height: 55vh; /* show more of the top of the picture */
+      width: 100%;
+      position: relative;
       display: grid;
-      align-items: end;
+      place-items: end start;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+        var(--hero-image, url('hero.jpg')) top center/cover no-repeat;
+      color: #fff;
     }
+    
+    /* Text block inside the hero */
+    header.hero .brand {
+      padding: clamp(1rem, 3vw, 2rem);
+    }
+    
+    /* Band name */
+    header.hero .brand h1 {
+      margin: 0 0 .25rem 0;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      letter-spacing: .02em;
+    }
+    
+    /* Tagline text */
+    header.hero .brand p {
+      margin: .25rem 0 0 0;
+      font-size: clamp(1rem, 2.2vw, 1.125rem);
+      color: #f4f4f8;
+      max-width: 42rem;
+    }
+    
+    
+    
+    
     .brand {
       padding: clamp(1.25rem, 3vw, 2rem) var(--pad);
     }
