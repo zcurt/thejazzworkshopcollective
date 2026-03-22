@@ -41,121 +41,116 @@
     /* Layout */
     .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
 
-/* --- HERO: no gaps, overlay always ON the photo --- */
-header.hero {
-  position: relative;
-  width: 100%;
-  color: #fff;
-  overflow: hidden;
-}
+    /* --- HERO: no gaps, overlay always ON the photo --- */
+    header.hero {
+      position: relative;
+      width: 100%;
+      color: #fff;
+      overflow: hidden;
+    }
 
-/* Gradient over the whole hero */
-header.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55));
-  pointer-events: none;
-  z-index: 1;
-}
+    /* Gradient over the whole hero */
+    header.hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55));
+      pointer-events: none;
+      z-index: 1;
+    }
 
-/* Image */
-header.hero .hero-media {
-  /* desktop/tablet: hero has a fixed banner height */
-  position: relative;
-  min-height: clamp(45vh, 60vw, 70vh);
-  z-index: 0;
-}
-header.hero .hero-media img {
-  display: block;
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-position: top center;
-  object-fit: cover; /* cinematic on wide screens */
-}
+    /* Image */
+    header.hero .hero-media {
+      /* desktop/tablet: hero has a fixed banner height */
+      position: relative;
+      min-height: clamp(45vh, 60vw, 70vh);
+      z-index: 0;
+    }
+    header.hero .hero-media img {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-position: top center;
+      object-fit: cover; /* cinematic on wide screens */
+    }
 
-/* Overlay text (centered, over image) */
-header.hero .brand {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: clamp(1rem, 3vh, 2.5rem);
-  text-align: center;
-  padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2.5rem);
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(2px);
-  border-radius: .5rem;
-  max-width: min(98%, 60rem);
-  z-index: 2;
-  line-height: 1.25;
-}
+    /* Overlay text (centered, over image) */
+    header.hero .brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: clamp(1rem, 3vh, 2.5rem);
+      text-align: center;
+      padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2.5rem);
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(2px);
+      border-radius: .5rem;
+      max-width: min(98%, 60rem);
+      z-index: 2;
+      line-height: 1.25;
+    }
 
-/* Type */
-header.hero .brand h1 {
-  margin: 0 0 .25rem 0;
-  font-weight: 800;
-  letter-spacing: .5px;
-  line-height: 1.1;
-  font-size: clamp(1.8rem, 5vw, 2.75rem);
-}
-header.hero .brand .tagline {
-  margin: 0;
-  font-size: clamp(1rem, 2.6vw, 1.25rem);
-  color: #f0f3f8;
-  opacity: .95;
-}
+    /* Type */
+    header.hero .brand h1 {
+      margin: 0 0 .25rem 0;
+      font-weight: 800;
+      letter-spacing: .5px;
+      line-height: 1.1;
+      font-size: clamp(1.8rem, 5vw, 2.75rem);
+    }
+    header.hero .brand .tagline {
+      margin: 0;
+      font-size: clamp(1rem, 2.6vw, 1.25rem);
+      color: #f0f3f8;
+      opacity: .95;
+    }
 
-/* ==== iPHONE PORTRAIT FIX (no crop, no black gap) ==== */
-/* In portrait on small screens, let the IMAGE define the height.
-   We drop absolute sizing and render the image in normal flow.
-   Result: header height == image height, so there’s nothing but photo under the overlay. */
-@media (orientation: portrait) and (max-width: 500px) {
-  header.hero .hero-media {
-    position: static;       /* let it size the header */
-    min-height: unset;      /* no fixed banner height */
-  }
-  header.hero .hero-media img {
-    position: static;       /* participate in flow */
-    width: 100%;
-    height: auto;           /* natural aspect ratio */
-    object-fit: contain;    /* full image shown */
-    object-position: top center;
-  }
+    /* ==== iPHONE PORTRAIT FIX (no crop, no black gap) ==== */
+    @media (orientation: portrait) and (max-width: 500px) {
+      header.hero .hero-media {
+        position: static;
+        min-height: unset;
+      }
+      header.hero .hero-media img {
+        position: static;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        object-position: top center;
+      }
 
-  /* The gradient still covers the hero via ::before */
-  header.hero { background: #000; } /* any side letterbox, if present */
+      header.hero { background: #000; }
 
-  /* Wider, slightly smaller overlay—still over the photo */
-  header.hero .brand {
-    width: 96vw;
-    max-width: none;
-    padding: 0.75rem 1rem;
-    bottom: 1rem;           /* sits on photo because header == image height */
-  }
-  header.hero .brand h1 { font-size: clamp(1.2rem, 4.2vw, 1.8rem); }
-  header.hero .brand .tagline { font-size: clamp(0.85rem, 3.2vw, 1rem); }
-}
+      header.hero .brand {
+        width: 96vw;
+        max-width: none;
+        padding: 0.75rem 1rem;
+        bottom: 1rem;
+      }
+      header.hero .brand h1 { font-size: clamp(1.2rem, 4.2vw, 1.8rem); }
+      header.hero .brand .tagline { font-size: clamp(0.85rem, 3.2vw, 1rem); }
+    }
 
-/* Landscape phones: reduce cropping by showing more of the image */
-@media (orientation: landscape) and (max-width: 900px) {
-  header.hero .hero-media { min-height: 70vh; }
-  header.hero .hero-media img { object-fit: contain; }
-}
+    /* Landscape phones: reduce cropping by showing more of the image */
+    @media (orientation: landscape) and (max-width: 900px) {
+      header.hero .hero-media { min-height: 70vh; }
+      header.hero .hero-media img { object-fit: contain; }
+    }
 
-/* Short viewports */
-@media (max-height: 600px) {
-  header.hero .brand h1 { font-size: clamp(1.4rem, 3.5vw, 2.1rem); }
-  header.hero .brand .tagline { font-size: clamp(0.9rem, 2vw, 1rem); }
-}
-@media (max-height: 450px) {
-  header.hero .brand h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
-  header.hero .brand .tagline { font-size: clamp(0.8rem, 1.8vw, 0.95rem); }
-}
-    
+    /* Short viewports */
+    @media (max-height: 600px) {
+      header.hero .brand h1 { font-size: clamp(1.4rem, 3.5vw, 2.1rem); }
+      header.hero .brand .tagline { font-size: clamp(0.9rem, 2vw, 1rem); }
+    }
+    @media (max-height: 450px) {
+      header.hero .brand h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
+      header.hero .brand .tagline { font-size: clamp(0.8rem, 1.8vw, 0.95rem); }
+    }
+
     /* Non-hero brand block elsewhere (kept for your site style) */
-    .brand { padding: clamp(1.25rem, 3vw, 2rem) var(--pad); } /* not applied inside hero due to absolute */
+    .brand { padding: clamp(1.25rem, 3vw, 2rem) var(--pad); }
 
     nav.site {
       background: transparent;
@@ -163,6 +158,7 @@ header.hero .brand .tagline {
       top: 0;
       border-bottom: 1px solid rgba(128,128,128,.15);
       backdrop-filter: blur(6px);
+      z-index: 10;
     }
     nav .inner {
       display: flex;
@@ -262,10 +258,36 @@ header.hero .brand .tagline {
       #coach .coach-block { flex-direction: column; align-items: center; text-align: center; }
       #coach .coach-photo img { width: 70%; max-width: 250px; }
     }
+
+    /* --- MEDIA GALLERY --- */
+    .media-grid {
+      display: grid;
+      gap: clamp(1rem, 2vw, 1.25rem);
+      grid-template-columns: 1fr;
+      margin-top: 1rem;
+    }
+    @media (min-width: 800px) {
+      .media-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .media-item h3 {
+      margin: 0 0 .75rem 0;
+      font-size: 1.05rem;
+    }
+    .media-item p {
+      margin: .75rem 0 0 0;
+    }
+    .media-item audio,
+    .media-item video {
+      width: 100%;
+      display: block;
+      border-radius: .5rem;
+    }
   </style>
 </head>
 <body>
-  
+
 <header class="hero" role="banner" aria-label="Band hero image">
   <div class="hero-media">
     <img src="IMG_8513.jpeg" alt="The Jazz Workshop Collective performing live">
@@ -275,13 +297,14 @@ header.hero .brand .tagline {
     <p class="tagline">Straight-ahead jazz combo in the tradition of jazz standards and the Great American Songbook.</p>
   </div>
 </header>
-  
+
   <!-- Simple in-page nav -->
   <nav class="site" aria-label="Primary">
     <div class="inner wrap">
       <a href="#about">About</a>
       <a href="#members">Band Members</a>
       <a href="#performances">Performances</a>
+      <a href="#media">Audio &amp; Video</a>
       <a href="#coach">Coach</a>
     </div>
   </nav>
@@ -334,6 +357,37 @@ header.hero .brand .tagline {
       </div>
     </section>
 
+    <section id="media">
+      <div class="wrap">
+        <h2 class="section-title">Audio &amp; Video</h2>
+        <p class="lede">
+          Listen to recent recordings and watch performance videos from The Jazz Workshop Collective.
+        </p>
+
+        <div class="media-grid">
+          <article class="card media-item">
+            <h3>All of Me</h3>
+            <audio controls preload="none">
+              <source src="All-of-Me.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+            <p class="muted">Audio recording</p>
+          </article>
+
+          <!-- Example video card for later use
+          <article class="card media-item">
+            <h3>Sample Performance Video</h3>
+            <video controls preload="metadata">
+              <source src="sample-video.mp4" type="video/mp4" />
+              Your browser does not support the video element.
+            </video>
+            <p class="muted">Live performance video</p>
+          </article>
+          -->
+        </div>
+      </div>
+    </section>
+
     <section id="coach">
       <div class="wrap">
         <h2 class="section-title">Coach</h2>
@@ -372,7 +426,6 @@ header.hero .brand .tagline {
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // OPTIONAL: Set hero <img> from --hero-image var instead of hardcoded src
-    // (uncomment to use the CSS var as single source of truth)
     /*
     document.addEventListener('DOMContentLoaded', () => {
       const raw = getComputedStyle(document.documentElement)
@@ -391,14 +444,12 @@ header.hero .brand .tagline {
       const brand  = hero?.querySelector('.brand');
       if (!hero || !media || !img || !brand) return;
 
-      // Only adjust when we're in portrait AND using object-fit: contain
       const isPortrait = window.matchMedia('(orientation: portrait)').matches && window.innerWidth <= 500;
       if (!isPortrait) {
-        brand.style.bottom = '1.25rem'; // default
+        brand.style.bottom = '1.25rem';
         return;
       }
 
-      // Make sure we have natural dimensions
       if (!img.complete || !img.naturalWidth || !img.naturalHeight) {
         img.addEventListener('load', placeOverlay, { once: true });
         return;
@@ -408,13 +459,11 @@ header.hero .brand .tagline {
       const cw = rect.width, ch = rect.height;
       const iw = img.naturalWidth, ih = img.naturalHeight;
 
-      // Scale to "contain"
       const scale = Math.min(cw / iw, ch / ih);
       const renderedH = ih * scale;
-      const letterbox = (ch - renderedH) / 2; // black bar above & below
+      const letterbox = (ch - renderedH) / 2;
 
-      // Pin overlay to bottom edge of the visible image (plus a small offset)
-      const offset = 12; // px
+      const offset = 12;
       const bottom = Math.max(letterbox + offset, 8);
       brand.style.bottom = bottom + 'px';
     }
