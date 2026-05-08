@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>The Jazz Workshop Collective — Straight-Ahead Jazz Combo</title>
+  <title>The Jazz Workshop Collective — Quartet & Sextet</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="The Jazz Workshop Collective is a straight-ahead jazz combo in the tradition of jazz standards and the Great American Songbook." />
+  <meta name="description" content="The Jazz Workshop Collective presents straight-ahead jazz in quartet and sextet formats, rooted in jazz standards and the Great American Songbook." />
   <meta property="og:title" content="The Jazz Workshop Collective" />
-  <meta property="og:description" content="Straight-ahead jazz combo in the tradition of jazz standards and the Great American Songbook." />
+  <meta property="og:description" content="Straight-ahead jazz in quartet and sextet formats." />
   <meta property="og:type" content="website" />
+
   <style>
-    /* ------ Quick setup: set your hero image here ------ */
     :root {
-      --hero-image: url('IMG_8513.jpeg'); /* optional if you use the script below */
+      --hero-image: url('IMG_8513.jpeg');
       --bg: #0f0f11;
       --fg: #f5f7fa;
       --muted: #b8c0cc;
@@ -21,27 +21,37 @@
       --maxw: 72rem;
       --pad: clamp(1rem, 2vw + .5rem, 2rem);
     }
+
     @media (prefers-color-scheme: light) {
-      :root { --bg:#ffffff; --fg:#0d0f12; --muted:#5b6470; --card:#f5f7fb; --link:#0057d9; }
+      :root {
+        --bg:#ffffff;
+        --fg:#0d0f12;
+        --muted:#5b6470;
+        --card:#f5f7fb;
+        --link:#0057d9;
+      }
     }
 
-    /* Global reset/typography */
-    *, *::before, *::after { box-sizing: border-box }
-    html, body { margin:0; padding:0; height:100% }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin:0; padding:0; height:100%; }
+
     body {
-      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color: var(--fg);
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
-    a { color: var(--link); text-decoration: none }
-    a:hover, a:focus { text-decoration: underline }
 
-    /* Layout */
-    .wrap { max-width: var(--maxw); margin-inline: auto; padding: 0 var(--pad) }
+    a { color: var(--link); text-decoration: none; }
+    a:hover, a:focus { text-decoration: underline; }
 
-    /* --- HERO: no gaps, overlay always ON the photo --- */
+    .wrap {
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding: 0 var(--pad);
+    }
+
     header.hero {
       position: relative;
       width: 100%;
@@ -49,23 +59,21 @@
       overflow: hidden;
     }
 
-    /* Gradient over the whole hero */
     header.hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55));
+      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.58));
       pointer-events: none;
       z-index: 1;
     }
 
-    /* Image */
     header.hero .hero-media {
-      /* desktop/tablet: hero has a fixed banner height */
       position: relative;
       min-height: clamp(45vh, 60vw, 70vh);
       z-index: 0;
     }
+
     header.hero .hero-media img {
       display: block;
       position: absolute;
@@ -73,10 +81,9 @@
       width: 100%;
       height: 100%;
       object-position: top center;
-      object-fit: cover; /* cinematic on wide screens */
+      object-fit: cover;
     }
 
-    /* Overlay text (centered, over image) */
     header.hero .brand {
       position: absolute;
       left: 50%;
@@ -84,15 +91,14 @@
       bottom: clamp(1rem, 3vh, 2.5rem);
       text-align: center;
       padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2.5rem);
-      background: rgba(0,0,0,0.35);
+      background: rgba(0,0,0,0.38);
       backdrop-filter: blur(2px);
       border-radius: .5rem;
-      max-width: min(98%, 60rem);
+      max-width: min(98%, 62rem);
       z-index: 2;
       line-height: 1.25;
     }
 
-    /* Type */
     header.hero .brand h1 {
       margin: 0 0 .25rem 0;
       font-weight: 800;
@@ -100,6 +106,7 @@
       line-height: 1.1;
       font-size: clamp(1.8rem, 5vw, 2.75rem);
     }
+
     header.hero .brand .tagline {
       margin: 0;
       font-size: clamp(1rem, 2.6vw, 1.25rem);
@@ -107,12 +114,12 @@
       opacity: .95;
     }
 
-    /* ==== iPHONE PORTRAIT FIX (no crop, no black gap) ==== */
     @media (orientation: portrait) and (max-width: 500px) {
       header.hero .hero-media {
         position: static;
         min-height: unset;
       }
+
       header.hero .hero-media img {
         position: static;
         width: 100%;
@@ -129,28 +136,30 @@
         padding: 0.75rem 1rem;
         bottom: 1rem;
       }
-      header.hero .brand h1 { font-size: clamp(1.2rem, 4.2vw, 1.8rem); }
-      header.hero .brand .tagline { font-size: clamp(0.85rem, 3.2vw, 1rem); }
+
+      header.hero .brand h1 {
+        font-size: clamp(1.2rem, 4.2vw, 1.8rem);
+      }
+
+      header.hero .brand .tagline {
+        font-size: clamp(0.85rem, 3.2vw, 1rem);
+      }
     }
 
-    /* Landscape phones: reduce cropping by showing more of the image */
     @media (orientation: landscape) and (max-width: 900px) {
       header.hero .hero-media { min-height: 70vh; }
       header.hero .hero-media img { object-fit: contain; }
     }
 
-    /* Short viewports */
     @media (max-height: 600px) {
       header.hero .brand h1 { font-size: clamp(1.4rem, 3.5vw, 2.1rem); }
       header.hero .brand .tagline { font-size: clamp(0.9rem, 2vw, 1rem); }
     }
+
     @media (max-height: 450px) {
       header.hero .brand h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
       header.hero .brand .tagline { font-size: clamp(0.8rem, 1.8vw, 0.95rem); }
     }
-
-    /* Non-hero brand block elsewhere (kept for your site style) */
-    .brand { padding: clamp(1.25rem, 3vw, 2rem) var(--pad); }
 
     nav.site {
       background: transparent;
@@ -160,6 +169,7 @@
       backdrop-filter: blur(6px);
       z-index: 10;
     }
+
     nav .inner {
       display: flex;
       gap: 1rem;
@@ -167,41 +177,47 @@
       padding: .6rem var(--pad);
       overflow-x: auto;
     }
+
     nav a {
       padding: .4rem .6rem;
       border-radius: .5rem;
       color: var(--fg);
       white-space: nowrap;
     }
-    nav a:hover { background: rgba(128,128,128,.12) }
 
-    section { padding: clamp(1.75rem, 4vw, 3rem) 0 }
-    section .section-title {
+    nav a:hover { background: rgba(128,128,128,.12); }
+
+    section { padding: clamp(1.75rem, 4vw, 3rem) 0; }
+
+    .section-title {
       font-size: clamp(1.25rem, 2.5vw, 1.75rem);
       margin: 0 0 .75rem 0;
       letter-spacing: .3px;
     }
+
     .lede {
       color: var(--muted);
-      max-width: 60ch;
+      max-width: 64ch;
       margin: .25rem 0 0 0;
     }
 
-    /* Cards & lists */
     .card {
       background: var(--card);
       border: 1px solid rgba(128,128,128,.15);
       border-radius: 12px;
       padding: clamp(1rem, 2.5vw, 1.25rem);
     }
+
     .grid {
       display: grid;
       gap: clamp(1rem, 2vw, 1.25rem);
       grid-template-columns: 1fr;
     }
+
     @media (min-width: 800px) {
-      .grid-2 { grid-template-columns: 1fr 1fr }
+      .grid-2 { grid-template-columns: 1fr 1fr; }
     }
+
     ul.clean {
       list-style: none;
       padding: 0;
@@ -209,21 +225,121 @@
       display: grid;
       gap: .5rem;
     }
+
     ul.clean li {
       padding: .6rem .75rem;
       border-radius: .6rem;
       background: rgba(128,128,128,.08);
       border: 1px solid rgba(128,128,128,.15);
     }
-    .muted { color: var(--muted) }
-    .coach {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .5rem .75rem;
-      background: rgba(255, 209, 102, .12);
-      border: 1px dashed rgba(255, 209, 102, .6);
+
+    .muted { color: var(--muted); }
+
+    .badge {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: #111;
+      background: var(--accent);
+      border-radius: 999px;
+      padding: .18rem .55rem;
+      margin-right: .4rem;
+      white-space: nowrap;
+    }
+
+    .badge.secondary {
+      background: rgba(122,186,255,.95);
+    }
+
+    .ensemble-card h3,
+    .media-item h3 {
+      margin-top: 0;
+    }
+
+    .ensemble-card p {
+      margin-bottom: 1rem;
+    }
+
+    .performance-list li {
+      display: block;
+    }
+
+    .performance-meta {
+      display: block;
+      margin-top: .15rem;
+    }
+
+    .media-grid {
+      display: grid;
+      gap: clamp(1rem, 2vw, 1.25rem);
+      grid-template-columns: 1fr;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 800px) {
+      .media-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .track {
+      margin-bottom: 1.25rem;
+    }
+
+    .track:last-child {
+      margin-bottom: 0;
+    }
+
+    .track h4 {
+      margin: 0 0 .35rem 0;
+      font-size: 1.05rem;
+    }
+
+    .track p {
+      margin: .35rem 0 .75rem 0;
+    }
+
+    audio,
+    video {
+      width: 100%;
+      display: block;
       border-radius: .5rem;
+    }
+
+    #coach { margin: 3rem 0; }
+
+    #coach .coach-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    #coach .coach-photo img {
+      width: 220px;
+      height: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    #coach .coach-text {
+      flex: 1;
+      min-width: 250px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 640px) {
+      #coach .coach-block {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      #coach .coach-photo img {
+        width: 70%;
+        max-width: 250px;
+      }
     }
 
     footer {
@@ -231,292 +347,414 @@
       color: var(--muted);
       border-top: 1px solid rgba(128,128,128,.15);
     }
-
-    /* --- COACH SECTION --- */
-    #coach { margin: 3rem 0; }
-    #coach .coach-block {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      gap: 1.5rem;
-    }
-    #coach .coach-photo img {
-      width: 220px;
-      height: auto;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    }
-    #coach .coach-text {
-      flex: 1;
-      min-width: 250px;
-      font-size: 1.05rem;
-      line-height: 1.6;
-    }
-    #coach .coach-text a { color: var(--link); text-decoration: none; }
-    #coach .coach-text a:hover { text-decoration: underline; }
-    @media (max-width: 640px) {
-      #coach .coach-block { flex-direction: column; align-items: center; text-align: center; }
-      #coach .coach-photo img { width: 70%; max-width: 250px; }
-    }
-
-    /* --- MEDIA GALLERY --- */
-    .media-grid {
-      display: grid;
-      gap: clamp(1rem, 2vw, 1.25rem);
-      grid-template-columns: 1fr;
-      margin-top: 1rem;
-    }
-    @media (min-width: 800px) {
-      .media-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    .media-item h3 {
-      margin: 0 0 .75rem 0;
-      font-size: 1.05rem;
-    }
-    .media-item p {
-      margin: .75rem 0 0 0;
-    }
-    .media-item audio,
-    .media-item video {
-      width: 100%;
-      display: block;
-      border-radius: .5rem;
-    }
-    .track {
-  margin-bottom: 1.25rem;
+    
+    /* --- ENSEMBLE PHOTOS --- */
+.ensemble-photo {
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: .75rem;
+  border: 1px solid rgba(128,128,128,.15);
 }
-.track:last-child {
-  margin-bottom: 0;
+
+.ensemble-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
+
+.ensemble-caption {
+  margin-top: .5rem;
+  font-size: .92rem;
+  color: var(--muted);
+}
+    
+    
+    
   </style>
 </head>
+
 <body>
 
 <header class="hero" role="banner" aria-label="Band hero image">
   <div class="hero-media">
     <img src="IMG_8513.jpeg" alt="The Jazz Workshop Collective performing live">
   </div>
+
   <div class="brand" aria-label="Site heading">
     <h1>The Jazz Workshop Collective</h1>
-    <p class="tagline">Straight-ahead jazz combo in the tradition of jazz standards and the Great American Songbook.</p>
+    <p class="tagline">Straight-ahead jazz in quartet and sextet formats, rooted in standards, swing, bebop, and the Great American Songbook.</p>
   </div>
 </header>
 
-  <!-- Simple in-page nav -->
-  <nav class="site" aria-label="Primary">
-    <div class="inner wrap">
-      <a href="#about">About</a>
-      <a href="#members">Band Members</a>
-      <a href="#performances">Performances</a>
-      <a href="#media">Audio &amp; Video</a>
-      <a href="#coach">Coach</a>
-    </div>
-  </nav>
-
-  <main id="content">
-    <section id="about">
-      <div class="wrap">
-        <h2 class="section-title">About</h2>
-        <p class="lede">
-         The Jazz Workshop Collective plays repertoire rooted in swing, bebop, and modal jazz—featuring jazz standards and selections from the Great American Songbook.
-        </p>
-        <p>Booking &amp; inquiries: <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a></p>
-      </div>
-    </section>
-
-    <section id="members">
-      <div class="wrap">
-        <h2 class="section-title">Band Members</h2>
-        <div class="grid grid-2">
-          <div class="card">
-            <ul class="clean" aria-label="Band roster">
-              <li><strong>Vocals</strong> — <span class="muted">Tory Clark</span></li>
-              <li><strong>Alto Saxophone</strong> — <span class="muted">Curt Bergmann</span></li>
-              <li><strong>Tenor Saxophone</strong> — <span class="muted">Charles Burdick</span></li>
-              <li><strong>Piano</strong> — <span class="muted">Madeline Elmhirst</span></li>
-              <li><strong>Guitar</strong> — <span class="muted">John Pohl</span></li>
-              <li><strong>Bass</strong> — <span class="muted">Maria Meade</span></li>
-              <li><strong>Drums</strong> — <span class="muted">Jon Norstad</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="performances">
-      <div class="wrap">
-        <h2 class="section-title">Performances</h2>
-        <div class="grid grid-2">
-          <div class="card">
-            <ul class="clean" aria-label="Recent shows">
-              <li><strong>2026-03-28</strong> — Workshop Concert Series at Metronome Brewery, St. Paul, MN</li>
-
-              <li><strong>2026-03-21</strong> — <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">Showtime Studio and Coffee, Roseville, MN</a></li>
-
-              <li><strong>2025-10-29</strong> — Workshop Concert Series at Metronome Brewery, St. Paul, MN</li>
-              <li><strong>2025-09-13</strong> — Whistling Well Farm, Afton, MN</li>
-              <li><strong>2025-08-09</strong> — Hoffman Family Fundraiser, Dual Citizen Brewery, St. Paul, MN</li>
-              <li><strong>2025-06-29</strong> — Workshop Concert Series at Jazz Central Studios, St. Paul, MN</li>
-              <li><strong>2025-06-05</strong> — Linda Pruden's Book Launch <a href="https://a.co/d/91Uxzkj" target="_blank" rel="noopener">From Fear to Peace: Growing Spiritually as a Dementia Caregiver</a>, St. Paul, MN</li>
-              <li><strong>2025-03-30</strong> — Workshop Concert Series at Jazz Central Studios, St. Paul, MN</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-<section id="media">
-  <div class="wrap">
-    <h2 class="section-title">Audio &amp; Video</h2>
-    <p class="lede">
-      Listen to recent recordings from The Jazz Workshop Collective.
-    </p>
-
-    <h3>Featuring Vocalist Tory Clark</h3>
-    <div class="media-grid">
-      <article class="card media-item">
-
-        <div class="track">
-          <h3><em>All of Me</em></h3>
-          <p>
-            Recorded live at
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-          </p>
-          <audio controls preload="none">
-            <source src="All-of-Me.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-
-        <div class="track">
-          <h3><em>Autumn Leaves</em></h3>
-          <p>
-            Recorded live at
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-          </p>
-          <audio controls preload="none">
-            <source src="Autumn-Leaves.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-
-        <p class="muted">Audio recordings</p>
-      </article>
-    </div>
-
-    <h3>Instrumentals</h3>
-    <div class="media-grid">
-      <article class="card media-item">
-
-        <div class="track">
-          <h3><em>Sweet Georgia Brown</em></h3>
-          <p>
-            Recorded live at
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-          </p>
-          <audio controls preload="none">
-            <source src="Sweet-Georgia-Brown.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-
-        <p class="muted">Audio recordings</p>
-      </article>
-    </div>
+<nav class="site" aria-label="Primary">
+  <div class="inner wrap">
+    <a href="#about">About</a>
+    <a href="#groups">Groups</a>
+    <a href="#members">Musicians</a>
+    <a href="#performances">Performances</a>
+    <a href="#media">Recordings</a>
+    <a href="#coach">Coach</a>
   </div>
-</section>
+</nav>
 
-    <section id="coach">
-      <div class="wrap">
-        <h2 class="section-title">Coach</h2>
+<main id="content">
 
-        <div class="coach-block">
-          <div class="coach-photo">
-            <img src="IMG_0089.jpeg" alt="Chris Bates coaching The Jazz Workshop Collective">
-          </div>
-          <div class="coach-text">
-            <p>
-              Coached by
-              <a href="https://doublebates.com/" target="_blank" rel="noopener">Chris Bates</a>,
-              bassist, composer, and educator.
-            </p>
-            <p>
-              <strong>The Jazz Workshop Collective</strong> was formed at
-              <a href="https://www.northstarjazzworkshops.com" target="_blank" rel="noopener">North Star Jazz Workshops</a>,
-              where collaboration, listening, and exploration of the jazz tradition are at the heart of the program.
-            </p>
-          </div>
+  <section id="news">
+    <div class="wrap">
+      <h2 class="section-title">News</h2>
+
+      <p class="lede">
+      
+      The Take Your Time Quartet is starting a monthly residency at Showtime Studio and Coffe. We will be performing the 3rd Thursday of every month from 1pm to 2:30pm.
+      
+      Next performance is May 21 at 1pm at <a href="https://www.showtimestudioandcoffee.com/upcoming-events" target="_blank" rel="noopener">
+              Showtime Studio and Coffee, Roseville, MN.
+            </a>
+      
+      </p>
+
+    </div>
+  </section>
+
+
+  <section id="about">
+    <div class="wrap">
+      <h2 class="section-title">About</h2>
+
+      <p class="lede">
+        The Jazz Workshop Collective is a flexible family of straight-ahead jazz groups performing repertoire rooted in swing, bebop, modal jazz, jazz standards, and the Great American Songbook.
+      </p>
+
+      <p>
+        The Collective performs as both an intimate quartet and a fuller sextet, with overlapping musicians, shared repertoire, and distinct ensemble personalities.
+      </p>
+
+      <p>
+        Booking &amp; inquiries:
+        <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="groups">
+    <div class="wrap">
+      <h2 class="section-title">Groups</h2>
+
+      <div class="grid grid-2">
+<article class="card ensemble-card">
+  <h3><span class="badge">Quartet</span>Take Your Time Quartet</h3>
+
+  <p>
+    A smaller, conversational combo focused on melody, swing, and space.
+    The quartet format is ideal for coffee shops, receptions,
+    community events, listening rooms, and daytime performances.
+  </p>
+
+  <p class="muted">
+    Typical instrumentation: saxophone, guitar, bass, and drums.
+  </p>
+
+  <div class="ensemble-photo">
+    <img
+      src="take-your-time-quartet.jpeg.PNG"
+      alt="Take Your Time Quartet performing live"
+    />
+  </div>
+
+  <p class="ensemble-caption">
+    The Take Your Time Quartet performing live in the Twin Cities.
+  </p>
+</article>
+        <article class="card ensemble-card">
+          <h3><span class="badge secondary">Sextet</span>Jazz Workshop Collective Sextet</h3>
+          <p>
+            A fuller ensemble sound featuring vocals, horns, and rhythm section. The sextet draws on classic jazz standards, vocal features, instrumental blowing tunes, and arrangements developed through the workshop tradition.
+          </p>
+          <p class="muted">
+            Typical instrumentation: vocals, alto saxophone, tenor saxophone, piano or guitar, bass, and drums.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="members">
+    <div class="wrap">
+      <h2 class="section-title">Musicians</h2>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Quartet</h3>
+          <ul class="clean" aria-label="Quartet roster">
+            <li><strong>Alto Saxophone</strong> — <span class="muted">Curt Bergmann</span></li>
+            <li><strong>Guitar</strong> — <span class="muted">John Pohl</span></li>
+            <li><strong>Bass</strong> — <span class="muted">Maria Meade</span></li>
+            <li><strong>Drums</strong> — <span class="muted">Jon Norstad</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Sextet</h3>
+          <ul class="clean" aria-label="Sextet roster">
+            <li><strong>Vocals</strong> — <span class="muted">Tory Clark</span></li>
+            <li><strong>Alto Saxophone</strong> — <span class="muted">Curt Bergmann</span></li>
+            <li><strong>Tenor Saxophone</strong> — <span class="muted">Charles Burdick</span></li>
+            <li><strong>Piano</strong> — <span class="muted">Madeline Elmhirst</span></li>
+            <li><strong>Guitar</strong> — <span class="muted">John Pohl</span></li>
+            <li><strong>Bass</strong> — <span class="muted">Maria Meade</span></li>
+            <li><strong>Drums</strong> — <span class="muted">Jon Norstad</span></li>
+          </ul>
         </div>
       </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <p>© <span id="year"></span> Curt Bergmann. All rights reserved.</p>
-      <p>Booking &amp; inquiries: <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a></p>
     </div>
-  </footer>
+  </section>
 
-  <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <section id="performances">
+    <div class="wrap">
+      <h2 class="section-title">Performances</h2>
 
-    // OPTIONAL: Set hero <img> from --hero-image var instead of hardcoded src
-    /*
-    document.addEventListener('DOMContentLoaded', () => {
-      const raw = getComputedStyle(document.documentElement)
-        .getPropertyValue('--hero-image').trim();
-      const url = raw.replace(/^url\((.*)\)$/, '$1').replaceAll('"','').replaceAll("'","");
-      const img = document.querySelector('header.hero .hero-media img');
-      if (img && url) img.src = url;
-    });
-    */
+      <p class="lede">
+        Performances from the quartet and sextet are listed together to show the shared musical life of the Collective.
+      </p>
 
-    // Precise overlay placement in PORTRAIT: hugs the visible bottom of the image
-    function placeOverlay() {
-      const hero   = document.querySelector('header.hero');
-      const media  = hero?.querySelector('.hero-media');
-      const img    = media?.querySelector('img');
-      const brand  = hero?.querySelector('.brand');
-      if (!hero || !media || !img || !brand) return;
+      <div class="card">
+        <ul class="clean performance-list" aria-label="Recent shows">
 
-      const isPortrait = window.matchMedia('(orientation: portrait)').matches && window.innerWidth <= 500;
-      if (!isPortrait) {
-        brand.style.bottom = '1.25rem';
-        return;
-      }
+          <li>
+            <strong>2026-05-21 at 1pm</strong> —
+            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
+              Showtime Studio and Coffee, Roseville, MN
+            </a>
+            <span class="performance-meta"><span class="badge secondary">Take Your Time Quartet</span></span>
+          </li>
 
-      if (!img.complete || !img.naturalWidth || !img.naturalHeight) {
-        img.addEventListener('load', placeOverlay, { once: true });
-        return;
-      }
+          <li>
+            <strong>2026-03-28</strong> —
+            Workshop Concert Series at Metronome Brewery, St. Paul, MN
+            <span class="performance-meta"><span class="badge secondary">Sextet</span></span>
+          </li>
 
-      const rect = media.getBoundingClientRect();
-      const cw = rect.width, ch = rect.height;
-      const iw = img.naturalWidth, ih = img.naturalHeight;
+          <li>
+            <strong>2026-03-21</strong> —
+            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
+              Showtime Studio and Coffee, Roseville, MN
+            </a>
+            <span class="performance-meta"><span class="badge secondary">Sextet</span></span>
+          </li>
 
-      const scale = Math.min(cw / iw, ch / ih);
-      const renderedH = ih * scale;
-      const letterbox = (ch - renderedH) / 2;
+          <li>
+            <strong>2025-10-29</strong> —
+            Workshop Concert Series at Metronome Brewery, St. Paul, MN
+            <span class="performance-meta"><span class="badge secondary">Sextet</span></span>
+          </li>
 
-      const offset = 12;
-      const bottom = Math.max(letterbox + offset, 8);
-      brand.style.bottom = bottom + 'px';
+          <li>
+            <strong>2025-09-13</strong> —
+            Whistling Well Farm, Afton, MN
+            <span class="performance-meta"><span class="badge secondary">Sextet</span></span>
+          </li>
+
+          <li>
+            <strong>2025-08-09</strong> —
+            Hoffman Family Fundraiser, Dual Citizen Brewery, St. Paul, MN
+            <span class="performance-meta"><span class="badge secondary">Sextet</span></span>
+          </li>
+
+          <li>
+            <strong>2025-06-29</strong> —
+            Workshop Concert Series at Jazz Central Studios, St. Paul, MN
+            <span class="performance-meta"><span class="badge secondary">Sextet</span></span>
+          </li>
+
+          <li>
+            <strong>2025-06-05</strong> —
+            Linda Pruden's Book Launch
+            <a href="https://a.co/d/91Uxzkj" target="_blank" rel="noopener">
+              From Fear to Peace: Growing Spiritually as a Dementia Caregiver
+            </a>,
+            St. Paul, MN
+            <span class="performance-meta"><span class="badge secondary">Sextet</span></span>
+          </li>
+
+          <li>
+            <strong>2025-03-30</strong> —
+            Workshop Concert Series at Jazz Central Studios, St. Paul, MN
+            <span class="performance-meta"><span class="badge secondary">Sextet</span></span>
+          </li>
+
+          <!-- Add quartet performances here as they are booked.
+          <li>
+            <strong>2026-05-21</strong> —
+            Showtime Studio and Coffee, Roseville, MN
+            <span class="performance-meta"><span class="badge">Quartet</span></span>
+          </li>
+          -->
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="media">
+    <div class="wrap">
+      <h2 class="section-title">Recordings</h2>
+
+      <p class="lede">
+        Listen to performance recordings from each group.
+      </p>
+
+      <div class="media-grid">
+
+        <article class="card media-item">
+          <h3><span class="badge">Quartet</span>Take Your Time Quartet</h3>
+
+          <div class="track">
+            <h4><em>Sweet Georgia Brown</em></h4>
+            <p class="muted">Quartet recording</p>
+            <audio controls preload="none">
+              <source src="Sweet-Georgia-Brown-Quartet.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+
+          <!-- Add more quartet recordings here.
+          <div class="track">
+            <h4><em>Blue Bossa</em></h4>
+            <p class="muted">Quartet recording</p>
+            <audio controls preload="none">
+              <source src="Blue-Bossa-Quartet.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          -->
+        </article>
+
+        <article class="card media-item">
+          <h3><span class="badge secondary">Sextet</span>Jazz Workshop Collective Sextet</h3>
+
+          <div class="track">
+            <h4><em>All of Me</em></h4>
+            <p>
+              Recorded live at
+              <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
+                Showtime Studio and Coffee, Roseville, MN
+              </a>
+            </p>
+            <audio controls preload="none">
+              <source src="All-of-Me.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+
+          <div class="track">
+            <h4><em>Autumn Leaves</em></h4>
+            <p>
+              Recorded live at
+              <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
+                Showtime Studio and Coffee, Roseville, MN
+              </a>
+            </p>
+            <audio controls preload="none">
+              <source src="Autumn-Leaves.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+
+          <div class="track">
+            <h4><em>Sweet Georgia Brown</em></h4>
+            <p>
+              Recorded live at
+              <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
+                Showtime Studio and Coffee, Roseville, MN
+              </a>
+            </p>
+            <audio controls preload="none">
+              <source src="Sweet-Georgia-Brown.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="coach">
+    <div class="wrap">
+      <h2 class="section-title">Coach</h2>
+
+      <div class="coach-block">
+        <div class="coach-photo">
+          <img src="IMG_0089.jpeg" alt="Chris Bates coaching The Jazz Workshop Collective">
+        </div>
+
+        <div class="coach-text">
+          <p>
+            Coached by
+            <a href="https://doublebates.com/" target="_blank" rel="noopener">Chris Bates</a>,
+            bassist, composer, and educator.
+          </p>
+
+          <p>
+            <strong>The Jazz Workshop Collective</strong> was formed at
+            <a href="https://www.northstarjazzworkshops.com" target="_blank" rel="noopener">North Star Jazz Workshops</a>,
+            where collaboration, listening, and exploration of the jazz tradition are at the heart of the program.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="year"></span> Curt Bergmann. All rights reserved.</p>
+    <p>Booking &amp; inquiries: <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function placeOverlay() {
+    const hero   = document.querySelector('header.hero');
+    const media  = hero?.querySelector('.hero-media');
+    const img    = media?.querySelector('img');
+    const brand  = hero?.querySelector('.brand');
+    if (!hero || !media || !img || !brand) return;
+
+    const isPortrait = window.matchMedia('(orientation: portrait)').matches && window.innerWidth <= 500;
+
+    if (!isPortrait) {
+      brand.style.bottom = '1.25rem';
+      return;
     }
 
-    window.addEventListener('resize', placeOverlay);
-    window.addEventListener('orientationchange', placeOverlay);
-    document.addEventListener('DOMContentLoaded', placeOverlay);
-  </script>
+    if (!img.complete || !img.naturalWidth || !img.naturalHeight) {
+      img.addEventListener('load', placeOverlay, { once: true });
+      return;
+    }
+
+    const rect = media.getBoundingClientRect();
+    const cw = rect.width;
+    const ch = rect.height;
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
+
+    const scale = Math.min(cw / iw, ch / ih);
+    const renderedH = ih * scale;
+    const letterbox = (ch - renderedH) / 2;
+
+    const offset = 12;
+    const bottom = Math.max(letterbox + offset, 8);
+    brand.style.bottom = bottom + 'px';
+  }
+
+  window.addEventListener('resize', placeOverlay);
+  window.addEventListener('orientationchange', placeOverlay);
+  document.addEventListener('DOMContentLoaded', placeOverlay);
+</script>
+
 </body>
 </html>
