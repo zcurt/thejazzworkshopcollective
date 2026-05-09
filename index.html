@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <link rel="canonical" href="https://jazzcombo.org/">
   <title>The Jazz Workshop Collective — Quartet & Ensemble</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The Jazz Workshop Collective presents straight-ahead jazz in quartet and larger ensemble formats, rooted in jazz standards and the Great American Songbook." />
@@ -368,7 +369,24 @@
       font-size: .92rem;
       color: var(--muted);
     }
-  </style>
+.performance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.performance-details {
+  flex: 1;
+}
+
+.performance-photo {
+  width: 40%;
+  height: auto;
+  display: block;
+}
+
+</style>
 </head>
 
 <body>
@@ -539,6 +557,8 @@
               Showtime Studio and Coffee, Roseville, MN
             </a>
             <span class="performance-meta"><span class="badge">Take Your Time Quartet</span></span>
+            
+            
           </li>
 
           <li>
@@ -547,15 +567,32 @@
             <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
           </li>
 
-          <li>
-            <strong>2026-03-21</strong> —
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-            <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
-          </li>
+<li class="performance-item">
 
-          <li>
+  <div class="performance-details">
+
+    <div class="performance-title">
+      <strong>2026-03-21</strong> --
+      <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
+        Showtime Studio and Coffee, Roseville, MN
+      </a>
+    </div>
+
+    <div class="performance-meta">
+      <span class="badge secondary">
+        Jazz Workshop Collective Ensemble
+      </span>
+    </div>
+
+  </div>
+
+  <img 
+    src="showtime-2026-03.jpg" 
+    alt="The Ensemble performing at Showtime"
+    class="performance-photo"
+  >
+
+</li>          <li>
             <strong>2025-10-29</strong> —
             Workshop Concert Series at Metronome Brewery, St. Paul, MN
             <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
