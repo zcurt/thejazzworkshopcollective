@@ -369,23 +369,35 @@
       font-size: .92rem;
       color: var(--muted);
     }
-.performance-item {
+.performance-card.with-photo {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 1.5rem;
 }
 
-.performance-details {
+.performance-card.with-photo .performance-copy {
   flex: 1;
 }
 
-.performance-photo {
+.performance-card.with-photo .showtime-photo {
   width: 40%;
+  max-width: 520px;
   height: auto;
   display: block;
+  margin: 0;
 }
 
+@media (max-width: 700px) {
+  .performance-card.with-photo {
+    display: block;
+  }
+
+  .performance-card.with-photo .showtime-photo {
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+}
 </style>
 </head>
 
@@ -567,32 +579,25 @@
             <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
           </li>
 
-<li class="performance-item">
-
-  <div class="performance-details">
-
-    <div class="performance-title">
-      <strong>2026-03-21</strong> --
-      <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
-        Showtime Studio and Coffee, Roseville, MN
-      </a>
-    </div>
+<li class="performance-card with-photo">
+  <div class="performance-copy">
+    <strong>2026-03-21</strong> --
+    <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
+      Showtime Studio and Coffee, Roseville, MN
+    </a>
 
     <div class="performance-meta">
-      <span class="badge secondary">
-        Jazz Workshop Collective Ensemble
-      </span>
+      <span class="badge secondary">Jazz Workshop Collective Ensemble</span>
     </div>
-
   </div>
 
-  <img 
-    src="showtime-2026-03.jpg" 
+  <img
+    src="showtime-2026-03.jpg"
     alt="The Ensemble performing at Showtime"
-    class="performance-photo"
+    class="showtime-photo"
   >
-
-</li>          <li>
+</li>
+<li>
             <strong>2025-10-29</strong> —
             Workshop Concert Series at Metronome Brewery, St. Paul, MN
             <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
