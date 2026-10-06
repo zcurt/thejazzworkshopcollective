@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="ComboSchool for North Star Jazz Workshops: messaging and scheduling in one place, every tune in your own key, and a backing band, built in one day by Curt Bergmann.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ComboSchool at North Star">
+<meta property="og:description" content="Messaging and scheduling in one place, every tune in your own key, and a backing band. Built in one day by Curt Bergmann (Group 12).">
+<meta property="og:url" content="https://jazzcombo.org/northstar/">
+<meta property="og:image" content="https://jazzcombo.org/northstar/shots/curt-messages.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>ComboSchool at North Star</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a jazz-record-sleeve magazine. A midnight cover with a tilted
+   laptop and phone, then alternating spreads: big condensed headline, serif
+   body, screenshots in device frames, brass pull quotes. One deliberate
+   look (print-like), colors set explicitly. */
+:root {
+  --midnight: #0e1a2b;
+  --midnight-2: #16273f;
+  --paper: #fbfaf7;
+  --ink: #15171c;
+  --ink-soft: #4a4f5a;
+  --brass: #d9a531;
+  --brass-deep: #9a6b10;
+  --stage: #3d7bd9;
+  --rule: #e2ddd2;
+  --display: "Big Shoulders Display", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Newsreader", Georgia, "Times New Roman", serif;
+  --mono: "DM Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.125rem/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: 0.005em; }
+p { margin: 0; }
+.wrap { max-width: 72rem; margin: 0 auto; padding-inline: clamp(1rem, 4vw, 3rem); }
+.kicker { font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; }
+
+/* Cover */
+.cover { background: radial-gradient(120% 90% at 85% 10%, var(--midnight-2) 0%, var(--midnight) 60%); color: #f4efe3; overflow: hidden; }
+.cover .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; padding-block: clamp(2.5rem, 6vw, 5rem); }
+.masthead { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; border-bottom: 2px solid var(--brass); padding-block: 1.1rem 0.7rem; }
+.masthead .name { font: 900 clamp(1.6rem, 3vw, 2.1rem)/1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; color: #fff; }
+.masthead .issue { color: var(--brass); }
+.cover h1 { font-weight: 900; font-size: clamp(3.2rem, 8.5vw, 6.6rem); line-height: 0.9; text-transform: uppercase; color: #fff; }
+.cover h1 em { font-style: normal; color: var(--brass); }
+.cover .dek { margin-top: 1.4rem; font-size: clamp(1.15rem, 1.8vw, 1.35rem); line-height: 1.5; color: #d9d3c4; max-width: 34rem; }
+.cover .byline { margin-top: 1.6rem; color: var(--brass); }
+.cover .live { font: 500 0.95rem/1.4 var(--mono); letter-spacing: 0.02em; color: #d9d3c4; overflow-wrap: anywhere; }
+.cover .live a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.cover-art { position: relative; min-height: 22rem; }
+.laptop { border-radius: 14px; background: #05080d; padding: 10px 10px 14px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.08); transform: rotate(-2.5deg); }
+.laptop img { border-radius: 6px; }
+.cover-art .phone { position: absolute; width: 34%; right: -2%; bottom: -14%; transform: rotate(5deg); }
+.phone { border-radius: 2.2rem; background: #05080d; padding: 0.55rem; box-shadow: 0 24px 50px -16px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.1); }
+.phone img { border-radius: 1.7rem; }
+
+/* Stat strip */
+.stats { background: var(--brass); color: var(--midnight); }
+.day { background: var(--midnight); color: #fff; }
+.day .wrap { padding-block: clamp(2rem, 5vw, 3.4rem); }
+.day h2 { color: #fff; font: 900 clamp(2rem, 5.4vw, 3.6rem)/1.02 var(--display); margin: .4rem 0 .8rem; }
+.day h2 em { color: var(--brass); }
+.day .lede { max-width: 46rem; color: #d6deea; font-size: 1.08rem; line-height: 1.55; }
+.day .nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 1.8rem 0; }
+.day .nums b { display: block; font: 900 clamp(1.9rem, 4.2vw, 2.8rem)/1 var(--display); color: var(--brass); font-variant-numeric: tabular-nums; }
+.day .nums span { font: 500 0.74rem/1.35 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: #c3cfe0; }
+.day .all { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .45rem 1.4rem; list-style: none; padding: 0; margin: 0; }
+.day .all li { padding-left: 1.3rem; position: relative; color: #e8edf5; line-height: 1.4; }
+.day .all li::before { content: "✓"; position: absolute; left: 0; color: var(--brass); font-weight: 700; }
+@media (max-width: 760px) { .day .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); } .day .all { grid-template-columns: minmax(0, 1fr); } }
+.stats .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; padding-block: 1.6rem; }
+.stat b { display: block; font: 900 clamp(2rem, 4.4vw, 3rem)/1 var(--display); font-variant-numeric: tabular-nums; }
+.stat span { font: 500 0.78rem/1.35 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Spreads */
+.spread .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(1.75rem, 5vw, 4.5rem); align-items: center; padding-block: clamp(3rem, 7vw, 6rem); }
+.spread.flip .wrap { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+.spread.flip .text { order: 2; }
+.spread + .spread { border-top: 1px solid var(--rule); }
+.spread .kicker { color: var(--brass-deep); }
+.spread h2 { margin-top: 0.6rem; font-weight: 800; font-size: clamp(2.4rem, 5.4vw, 4.1rem); line-height: 0.95; text-transform: uppercase; color: var(--midnight); }
+.spread .text p { margin-top: 1.1rem; color: var(--ink-soft); max-width: 36rem; }
+.spread .text p strong { color: var(--ink); font-weight: 600; }
+figure { margin: 0; }
+figcaption { margin-top: 0.85rem; font: 400 0.82rem/1.45 var(--mono); color: var(--ink-soft); }
+.screen { border-radius: 12px; overflow: hidden; box-shadow: 0 22px 50px -24px rgba(14,26,43,.45), 0 0 0 1px var(--rule); background: #fff; }
+.duo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.duo .phone:nth-child(2) { margin-top: 3rem; }
+.ticks { margin: 1.4rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.6rem; max-width: 36rem; }
+.ticks li { position: relative; padding-left: 1.6rem; color: var(--ink-soft); }
+.ticks li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--brass); }
+
+/* Pull quote band */
+.pull { background: var(--midnight); color: #fff; }
+.pull .wrap { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+.pull blockquote { margin: 0; font: 800 clamp(2rem, 5vw, 3.6rem)/1 var(--display); text-transform: uppercase; max-width: 52rem; text-wrap: balance; }
+.pull blockquote em { font-style: normal; color: var(--brass); }
+.pull p { margin-top: 1rem; color: #c9c3b4; font-size: 1.05rem; max-width: 40rem; }
+
+/* Sidebar boxes */
+.boxes .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; padding-block: clamp(3rem, 6vw, 5rem); }
+.box { border-top: 4px solid var(--midnight); padding-top: 1rem; }
+.box h3 { font-weight: 800; font-size: 1.7rem; text-transform: uppercase; color: var(--midnight); }
+.box p, .box li { color: var(--ink-soft); font-size: 1rem; }
+.box ul { margin: 0.7rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.4rem; }
+.box table { width: 100%; border-collapse: collapse; margin-top: 0.7rem; font-size: 0.98rem; }
+.box td { padding: 0.35rem 0; border-bottom: 1px solid var(--rule); color: var(--ink-soft); }
+.box tr.group th { padding: 0.9rem 0 0.2rem; text-align: left; font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep); }
+.box tr.group:first-child th { padding-top: 0; }
+.box tr.total td { color: var(--ink); font-weight: 600; border-bottom: none; }
+.box tr.total:first-of-type td, .box tr.group + tr.total td { padding-top: 0.7rem; }
+.box td:last-child { text-align: right; font: 500 0.9rem var(--mono); color: var(--ink); white-space: nowrap; padding-left: 0.6rem; }
+.box .atcost { margin-top: 1rem; padding: 0.8rem 0.9rem; border-left: 4px solid var(--brass); background: #fbf3df; color: var(--ink); font-size: 0.98rem; }
+.box .atcost strong { color: var(--midnight); }
+.box .note { margin-top: 0.6rem; font-size: 0.85rem; }
+
+/* The ask */
+.ask { background: linear-gradient(180deg, var(--paper) 0%, #f1ece0 100%); border-top: 1px solid var(--rule); }
+.ask .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.75rem, 5vw, 4rem); padding-block: clamp(3rem, 7vw, 5.5rem); }
+.ask h2 { font-weight: 900; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 0.92; text-transform: uppercase; color: var(--midnight); }
+.ask h2 em { font-style: normal; color: var(--brass-deep); }
+.ask ol { margin: 1.2rem 0 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 0.9rem; }
+.ask ol li { counter-increment: step; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 0.6rem; color: var(--ink-soft); }
+.ask ol li::before { content: counter(step); font: 900 1.9rem/1 var(--display); color: var(--brass-deep); }
+.questions { background: #fff; border: 1px solid var(--rule); border-radius: 14px; padding: 1.4rem 1.5rem; align-self: start; }
+.questions h3 { font-weight: 800; font-size: 1.6rem; text-transform: uppercase; color: var(--midnight); }
+.questions ul { margin: 0.8rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.55rem; color: var(--ink-soft); font-size: 1.02rem; }
+
+
+.spread.lead .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+.replaces { padding: 0.8rem 0.95rem; border-left: 4px solid var(--brass); background: #fbf3df; color: var(--ink) !important; }
+.flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 0.6rem; align-items: start; }
+.flow .step { background: #fff; border: 1px solid var(--rule); border-top: 4px solid var(--brass); border-radius: 10px; padding: 0.8rem 0.85rem; min-width: 0; }
+.flow .step .n { font: 500 0.7rem/1.3 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep); }
+.flow .step p { margin-top: 0.35rem; font-size: 0.95rem; line-height: 1.45; color: var(--ink-soft); }
+.flow .arrow { align-self: center; font: 800 1.6rem/1 var(--display); color: var(--brass-deep); }
+.flow .flow-shot { grid-column: 1 / -1; margin-top: 0.8rem; }
+@media (max-width: 860px) {
+  .spread.lead .wrap { grid-template-columns: minmax(0, 1fr); }
+  .flow { grid-template-columns: minmax(0, 1fr); }
+  .flow .arrow { justify-self: center; transform: rotate(90deg); }
+}
+
+.talk { position: relative; padding-bottom: 2.5rem; }
+.talk .talk-dm { position: absolute; width: 36%; right: -1rem; bottom: -1rem; transform: rotate(3deg); }
+.talk .talk-group figcaption { max-width: 60%; }
+@media (max-width: 860px) {
+  .talk { padding-bottom: 0; display: grid; gap: 1.25rem; }
+  .talk .talk-dm { position: static; width: 70%; justify-self: center; transform: none; }
+  .talk .talk-group figcaption { max-width: none; }
+}
+
+.billing { border-top: 1px solid var(--rule); }
+.billing .wrap { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(1.75rem, 5vw, 4rem); padding-block: clamp(3rem, 6vw, 5rem); align-items: start; }
+.billing h2 { margin-top: 0.6rem; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 0.95; text-transform: uppercase; color: var(--midnight); }
+.billing-text > p { margin-top: 1.1rem; color: var(--ink-soft); max-width: 36rem; }
+@media (max-width: 860px) { .billing .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+.compare { border-top: 1px solid var(--rule); }
+.compare .wrap { padding-block: clamp(3rem, 6vw, 5rem); }
+.compare h2 { margin-top: 0.6rem; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 0.95; text-transform: uppercase; color: var(--midnight); }
+.compare-table { margin-top: 1.5rem; overflow-x: auto; border: 1px solid var(--rule); border-radius: 12px; background: #fff; }
+.compare table { width: 100%; min-width: 40rem; border-collapse: collapse; font-size: 0.98rem; }
+.compare th, .compare td { padding: 0.75rem 1rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); }
+.compare thead th { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass-deep); background: #fbf8f1; }
+.compare tbody th { width: 26%; font-weight: 600; color: var(--midnight); }
+.compare td { color: var(--ink-soft); }
+.compare td.win { color: var(--ink); font-weight: 600; background: #fbf3df; }
+.compare tr:last-child th, .compare tr:last-child td { border-bottom: none; }
+.compare .note { margin-top: 0.8rem; font: 400 0.82rem/1.45 var(--mono); color: var(--ink-soft); }
+
+.builder { background: var(--midnight); color: #e9e4d8; }
+.builder .wrap { padding-block: clamp(3rem, 6vw, 5rem); display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
+.builder .kicker { grid-column: 1 / -1; }
+.builder blockquote { margin: 0; font: 800 clamp(2.4rem, 5.5vw, 4rem)/0.95 var(--display); text-transform: uppercase; color: #fff; text-wrap: balance; }
+.builder blockquote em { font-style: normal; color: var(--brass); }
+.builder-text p { color: #d4cec0; font-size: 1.08rem; }
+.builder-text p + p { margin-top: 1rem; }
+.builder .sig { font: 500 0.8rem/1.4 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass) !important; }
+@media (max-width: 860px) { .builder .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+/* Practice: the tune pages */
+.pull.practice-open { background: radial-gradient(110% 120% at 15% 0%, var(--midnight-2) 0%, var(--midnight) 65%); }
+.pull .kicker { color: var(--brass); }
+.facts { margin-top: 1.6rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; max-width: 52rem; }
+.facts div { border-top: 2px solid var(--brass); padding-top: 0.6rem; }
+.facts b { display: block; font: 900 clamp(1.8rem, 3.6vw, 2.6rem)/1 var(--display); color: #fff; font-variant-numeric: tabular-nums; }
+.facts span { font: 500 0.74rem/1.35 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: #c9c3b4; }
+.views { margin: 1.3rem 0 0; display: grid; gap: 0.55rem; max-width: 36rem; }
+.views div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 0.75rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--rule); }
+.views dt { font: 800 1.15rem/1.3 var(--display); text-transform: uppercase; color: var(--midnight); letter-spacing: 0.02em; }
+.views dd { margin: 0; color: var(--ink-soft); font-size: 1rem; }
+.notation { position: relative; padding-bottom: 3rem; }
+.notation .notation-phone { position: absolute; width: 32%; right: -1rem; bottom: -1.5rem; transform: rotate(3deg); }
+.notation .notation-main figcaption { max-width: 62%; }
+@media (max-width: 860px) {
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .views div { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+  .notation { padding-bottom: 0; display: grid; gap: 1.25rem; }
+  .notation .notation-phone { position: static; width: 70%; justify-self: center; transform: none; }
+  .notation .notation-main figcaption { max-width: none; }
+}
+
+footer { background: var(--midnight); color: #a9b2c2; }
+footer .wrap { padding-block: 1.6rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; font: 400 0.8rem/1.5 var(--mono); }
+footer b { color: var(--brass); font-weight: 500; }
+
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--stage); outline-offset: 3px; }
+
+@media (max-width: 860px) {
+  .cover .wrap, .spread .wrap, .spread.flip .wrap, .ask .wrap { grid-template-columns: minmax(0, 1fr); }
+  .spread.flip .text { order: 0; }
+  .boxes .wrap { grid-template-columns: minmax(0, 1fr); }
+  .stats .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cover-art { min-height: 0; margin-bottom: 3rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .laptop, .cover-art .phone { transition: transform .6s ease; }
+  .cover-art:hover .laptop { transform: rotate(-1deg); }
+  .cover-art:hover .phone { transform: rotate(2deg) translateY(-6px); }
+}
+</style>
+
+<header class="cover">
+  <div class="wrap" style="display:block;padding-block:0">
+    <div class="masthead"><span class="name">ComboSchool</span><span class="kicker issue">A proposal for North Star Jazz Workshops · Fall 2026</span></div>
+  </div>
+  <div class="wrap">
+    <div>
+      <p class="kicker" style="color:#9fb3d1">Schedule and messages, one system</p>
+      <h1 style="margin-top:.8rem">The schedule <em>talks.</em></h1>
+      <p class="dek">Every rehearsal, jam and concert comes with its conversation. When something on the schedule changes, the right people hear about it in their messages, and every message takes them straight back to the date.</p>
+      <p class="dek" style="margin-top:.9rem">Members post their own gigs, say <strong style="color:#fff">I'm going</strong> to the jams, and find their section in <strong style="color:#fff">#sax</strong> or <strong style="color:#fff">#bass</strong>. And when it's time to practice, every tune your group plays opens to its changes in your own key, written out as real notation, with a rhythm section ready to play along.</p>
+      <p class="dek" style="margin-top:.9rem"><strong style="color:#fff">And I built all of it in one day.</strong></p>
+      <p class="dek live" style="margin-top:.9rem">It's running now: <a href="https://northstar.jazzcombo.org">northstar.jazzcombo.org</a></p>
+      <p class="kicker byline">By Curt Bergmann · alto sax, Group 12</p>
+    </div>
+    <div class="cover-art" aria-hidden="false">
+      <figure class="laptop"><img src="shots/curt-messages.jpg" alt="Messages: Recent shows a sub notice for Sunday's Group 12 rehearsal next to a member's reply about it and the office's concert announcement" width="1280" height="820"></figure>
+      <figure class="phone"><img src="shots/curt-notices-phone.jpg" alt="Curt's personal ComboSchool notices on his phone, each with an Open link to the rehearsal" width="390" height="664"></figure>
+    </div>
+  </div>
+</header>
+
+<section class="day" aria-label="Built in one day">
+  <div class="wrap" style="display:block">
+    <p class="kicker" style="color:var(--brass)">How this happened</p>
+    <h2>One member. <em>One day.</em> All of this.</h2>
+    <p class="lede">I wrote the first line of ComboSchool at 10:20 on a Monday morning. By that evening it was running on the open internet at its own address, with North Star's schedule, groups, jams and tunes in it, a user manual for every role, and hundreds of automated tests checking it every time anything changed. Software that used to take a team months now takes a determined person a day. I still can't quite believe it, so here's the receipt.</p>
+    <div class="nums">
+      <div><b>1 day</b><span>From first line to a live website</span></div>
+      <div><b>38</b><span>Screens</span></div>
+      <div><b>618</b><span>Automated tests, all passing</span></div>
+      <div><b>3</b><span>User manuals, 15,000 words</span></div>
+    </div>
+    <ul class="all" aria-label="Everything that's in it">
+      <li>Group conversations, set up from the roster</li>
+      <li>Direct messages and small groups</li>
+      <li>Topic channels and a channel for every section</li>
+      <li>Office announcements, in the app and by email</li>
+      <li>Rehearsals, classes, lessons, jams and concerts</li>
+      <li>Drafts reviewed by faculty, then published</li>
+      <li>Sub requests the coach decides and the app asks</li>
+      <li>Attendance and "can't make it"</li>
+      <li>RSVPs that land on your Home page</li>
+      <li>A Gigs tab for everyone's own gigs</li>
+      <li>Recordings of rehearsals and concerts</li>
+      <li>Guardians included for minors</li>
+      <li>A public calendar for the world</li>
+      <li>666 standards and 3,337 chord charts</li>
+      <li>Every key in your own instrument's key and clef</li>
+      <li>Practice views as real notation</li>
+      <li>A backing band in five styles, lighting the bar</li>
+      <li>Passkey sign-in, and a manual for every role</li>
+    </ul>
+  </div>
+</section>
+
+<section class="stats" aria-label="North Star at a glance">
+  <div class="wrap">
+    <div class="stat"><b>1</b><span>Place for the schedule and every conversation</span></div>
+    <div class="stat"><b>150</b><span>Members, coaches and guardians</span></div>
+    <div class="stat"><b>1 tap</b><span>To say you can't make it</span></div>
+    <div class="stat"><b>$0</b><span>For North Star through 2026</span></div>
+  </div>
+</section>
+
+<section class="spread lead" aria-label="Schedule and messages">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">The big idea</p>
+      <h2>Your calendar and your group chat, finally talking.</h2>
+      <p>Most schools run the schedule in one place and the conversation in another: a calendar, an email list, a group text. ComboSchool is <strong>one system</strong>, so the two stay in step on their own.</p>
+      <p class="replaces"><strong>One app instead of two.</strong> North Star already uses My Music Staff (linked from its website) and the free version of Slack, which shows only the last 90 days of messages and deletes anything older than a year. ComboSchool could replace both: schedule, lessons, rosters and every conversation in one place, with history kept for good. Billing and payments are on the roadmap; until then, My Music Staff can keep handling those.</p>
+      <ul class="ticks">
+        <li><strong>Every group has its conversation,</strong> right beside its schedule. Group 12's chat and its Sunday rehearsals live together.</li>
+        <li><strong>Changes reach exactly the right people.</strong> A sub needed, a coach out, a jam published: the people involved hear it in Messages, and by email if they chose.</li>
+        <li><strong>Every notice opens the date.</strong> Tap <strong>Open</strong> and you're on the rehearsal, with the answer buttons right there.</li>
+        <li><strong>Recent shows it all together:</strong> the sub request, the reply about it, and the office's announcement, newest first.</li>
+      </ul>
+    </div>
+    <div class="flow" aria-label="How a schedule change becomes a message">
+      <div class="step"><span class="n">Schedule</span><p>Curt taps <strong>Can't make it</strong> for Sunday.</p></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><span class="n">Messages</span><p>Chris is asked to choose a sub. Alto players are asked to cover. Group 12 hears who's subbing.</p></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><span class="n">Back to the date</span><p>Each notice opens the rehearsal, where the sub says yes in one tap.</p></div>
+      <figure class="flow-shot"><div class="screen"><img src="shots/chris-subs.jpg" alt="The Group 12 rehearsal page as the coach sees it: Curt can't make it, three alto players asked" width="1280" height="820"></div>
+        <figcaption>The rehearsal page Chris lands on from his notice.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="spread flip" aria-label="Group conversations and direct messages">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">Talking to each other</p>
+      <h2>Your whole group, or just one person.</h2>
+      <p>Every group gets its own conversation the day its roster is set: charts, tempos, who's bringing what. Nobody has to collect phone numbers or start a group text.</p>
+      <p>Members message each other directly, one to one or a few at a time, without trading personal numbers. A bass player and a drummer can book Saturday's practice room in three messages.</p>
+      <ul class="ticks">
+        <li>A group's conversation includes exactly its current roster, plus guardians of any minors.</li>
+        <li>A direct message that includes someone under 18 automatically includes their guardians.</li>
+        <li>Unread counts, Recent, and email for the messages you choose.</li>
+      </ul>
+    </div>
+    <div class="talk">
+      <figure class="talk-group"><div class="screen"><img src="shots/group1-desktop.jpg" alt="Group 1's conversation: members agree on charts and a tempo for Monday" width="1280" height="820"></div>
+        <figcaption>Group 1's conversation, as its bass player sees it.</figcaption></figure>
+      <figure class="phone talk-dm"><img src="shots/dm-phone.jpg" alt="A direct message between two members booking a practice room" width="390" height="664"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="spread">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">For coaches: subs</p>
+      <h2>The coach decides. The app does the asking.</h2>
+      <p>A player who can't make Sunday just says so. Chris gets a notice and picks what happens: <strong>no sub</strong>, <strong>ask a few people</strong> (players of the same instrument come up first), or <strong>open it to anyone</strong>.</p>
+      <p>ComboSchool sends the asks, the <strong>first yes</strong> gets the spot, and Chris, the player and the group are all told. If a sub backs out, the same people are asked again; if Chris asked the wrong person, <strong>Un-ask</strong> sends an apology. No phone tree.</p>
+    </div>
+    <div class="duo">
+      <figure class="phone"><img src="shots/curt-notices-phone.jpg" alt="Curt's personal ComboSchool notices on his phone: Your instructor is finding a sub" width="390" height="664"></figure>
+      <figure class="phone"><img src="shots/curt-schedule-phone.jpg" alt="Curt's schedule on his phone, showing Sub needed: Alto Saxophone on the Group 12 rehearsal" width="390" height="664"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pull" aria-label="Pull quote">
+  <div class="wrap">
+    <blockquote>Nobody finds out <em>at the door</em> anymore.</blockquote>
+    <p>Every step is a message to exactly the people involved, in the app and by email, the way each person chose.</p>
+  </div>
+</section>
+
+
+<section class="spread flip">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">Channels</p>
+      <h2>A listening club, right inside.</h2>
+      <p>Beyond the groups, anyone can join topic channels, the way Slack works. This week <strong>#listening-club</strong> is on <em>Blue Train</em>: Coltrane, Lee Morgan and Curtis Fuller, recorded in 1957.</p>
+      <ul class="ticks">
+        <li>Browse every channel and join or leave with one tap.</li>
+        <li>A topic line anyone in the channel can change: "Now listening: Blue Train".</li>
+        <li><strong>Bold</strong>, <em>italics</em> and links in any message. A link gets a preview card, like the album cover here.</li>
+        <li>Open channels for everyone, or private ones by invitation. Guardians come along with minors.</li>
+      </ul>
+    </div>
+    <figure><div class="screen"><img src="shots/club-desktop.jpg" alt="The #listening-club channel: topic Now listening: Blue Train, with posts about Moment's Notice and I'm Old Fashioned" width="1280" height="820"></div>
+      <figcaption>#listening-club: one album a week, with its cover card and everyone's notes. Posts are from the office and fictional demo members.</figcaption></figure>
+  </div>
+</section>
+
+<section class="spread" aria-label="Section channels">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">Section channels</p>
+      <h2>Every section has its own room.</h2>
+      <p><strong>#sax, #trumpet, #trombone, #bass, #keys, #guitar, #drums, #vibes, #vocals</strong>: ComboSchool makes a channel for every section from the instruments members play. Nobody has to set them up.</p>
+      <ul class="ticks">
+        <li><strong>You're already in yours.</strong> Alto, tenor and bari players all land in one #sax, and the channel follows your profile when you add an instrument.</li>
+        <li><strong>Open to anyone.</strong> A pianist curious about voicings can join #guitar, and leave with one tap.</li>
+        <li><strong>Instruments are picked, never typed,</strong> from a searchable list with a <strong>Main</strong> one first. So a sub request reaches the right players, and every part comes out in the right key.</li>
+      </ul>
+    </div>
+    <figure><div class="screen"><img src="shots/section-channels.jpg" alt="Browse channels: #bass, #drums, #guitar, #keys, #listening-club, #sax, #trombone and #trumpet, each with its member count; Curt is in #listening-club and #sax" width="1600" height="1025"></div>
+      <figcaption>Curt's channel list: he's in #sax because he plays alto. Member counts are the demo school's.</figcaption></figure>
+  </div>
+</section>
+
+<section class="spread flip">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">Jams &amp; events</p>
+      <h2>Drafted, reviewed, then announced.</h2>
+      <p>A new jam, clinic, show or concert night starts as a <strong>draft</strong> that only staff and faculty can see. Faculty mark <strong>Looks good</strong> or leave a note.</p>
+      <p>When it's ready, the office taps <strong>Publish and announce</strong>, and everyone gets the message with its own announcement text. Members see a <strong>New</strong> badge until they've seen it.</p>
+      <p>Anything marked public also goes up on North Star's <strong>public calendar</strong>, open to anyone with no sign-in and laid out like the events page on northstarjazzworkshops.com: the next date up top, then the rest of the season.</p>
+    </div>
+    <div class="duo">
+      <figure style="grid-column:1 / -1"><div class="screen"><img src="shots/office-draft.jpg" alt="The office's view of a draft Halloween Costume Jam with a Publish and announce button" width="1280" height="820"></div></figure>
+      <figure style="grid-column:1 / -1"><div class="screen"><img src="shots/public-calendar.jpg" alt="North Star's public calendar, signed out: Come hear it live, then a Next up block for the Showtime Jam on Wednesday, October 7, 6:00 to 9:00 PM at Showtime Studio &amp; Coffee, then More on the calendar with cards for the Second Sunday Jam, the Michael Ragonese Trio Clinic and the North Star Member Concert" width="1600" height="1300"></div>
+        <figcaption>The public calendar at /p/northstar: what anyone sees, no sign-in.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="spread" aria-label="Gigs">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">Gigs</p>
+      <h2>Where everyone's playing this week.</h2>
+      <p>Members play all over town, and until now you heard about it by word of mouth. The <strong>Gigs</strong> tab is where they tell each other. Anyone taps <strong>Post a gig</strong> at the top: the day, the room, the lineup, the cover.</p>
+      <p>Mine is on there: the <strong>Take Your Time Quartet</strong>, third Thursdays, 1 to 3:30, at Showtime Studio &amp; Coffee, with John Pohl, Jon Norstad and Maria Meade.</p>
+      <ul class="ticks">
+        <li><strong>Everyone sees it,</strong> with a <strong>New</strong> badge, and posting it announces it to the whole school in Announcements, with an <strong>Open</strong> link.</li>
+        <li><strong>I'm coming</strong> puts it on your Home page and your schedule, and tells the band how many to expect.</li>
+        <li>The poster edits or deletes it; the office can remove any gig.</li>
+      </ul>
+    </div>
+    <div class="talk">
+      <figure class="talk-group"><div class="screen"><img src="shots/gigs-desktop.jpg" alt="The Gigs tab: Okafor Trio, Sunday brunch duo, Take Your Time Quartet at Showtime Studio &amp; Coffee and Hard bop night, each with a New badge, lineup, who posted it, how many are coming and an I'm coming button" width="1600" height="1175"></div>
+        <figcaption>The Gigs tab, as a member sees it. Other bands are fictional demo members.</figcaption></figure>
+      <figure class="phone talk-dm"><img src="shots/gigs-phone.jpg" alt="The Take Your Time Quartet gig on a phone: Thursday October 15, 1:00 to 3:30 PM, Showtime Studio &amp; Coffee, Curt Bergmann, John Pohl, Jon Norstad and Maria Meade, with I'm coming selected" width="390" height="651"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="spread flip" aria-label="RSVP">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">On your phone</p>
+      <h2>Say you're going. It's on your Home.</h2>
+      <p>The Second Sunday Jam at Dual Citizen Brewing, the Metronome Jam on the last Tuesday at MetroNOME Brewery, the Showtime Jam on the first Wednesday: North Star's jams, member concerts, clinics and faculty nights sit together under <strong>Jams &amp; Events</strong>, and anything you haven't seen is marked <strong>New</strong>.</p>
+      <p>Answer <strong>I'm going</strong>, <strong>Maybe</strong> or <strong>Can't make it</strong> to a jam, clinic or show, <strong>I'm coming</strong> to a concert, and it joins <strong>Coming up</strong> on your Home page beside your rehearsals and the gigs you're going to. Guardians see their kids' too.</p>
+      <ul class="ticks">
+        <li>Rehearsals set once as a series: 2nd and 4th Sundays, 2:30 to 4:30, Jazz Central basement.</li>
+        <li>Double-booked rooms are flagged for the office.</li>
+        <li>Phone apps for iPhone and Android come from the same code.</li>
+      </ul>
+    </div>
+    <div class="duo">
+      <figure class="phone"><img src="shots/member-coming-up-phone.jpg" alt="Coming up on a member's Home page: the Second Sunday Jam answered I'm going, then the Take Your Time Quartet and Hard bop night tagged Gig with I'm coming selected" width="390" height="570"></figure>
+      <figure class="phone"><img src="shots/curt-events-phone.jpg" alt="Jams &amp; Events on a phone: 14 new since you last looked, then the Showtime Jam, the Second Sunday Jam and the Metronome Jam, each with a New badge" width="390" height="664"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pull" aria-label="Coach cover">
+  <div class="wrap">
+    <p class="kicker" style="color:var(--brass)">Coach cover</p>
+    <blockquote style="margin-top:.6rem">Out sick? <em>One button</em> tells the faculty.</blockquote>
+    <p>A coach taps <strong style="color:#fff">I can't make it, find cover</strong>. Faculty see it at once, a colleague takes it or the office assigns one, and the group hears who's leading. The sub can take attendance for that one rehearsal and nothing more.</p>
+  </div>
+</section>
+
+<section class="pull practice-open" aria-label="Practice">
+  <div class="wrap">
+    <p class="kicker">Between rehearsals</p>
+    <blockquote style="margin-top:.6rem">Then go home and <em>practice.</em></blockquote>
+    <p>The schedule gets everyone into the room. The tune pages make the room sound better: every tune your group plays, with its chord changes in your own key, practice exercises written out as music, and a bass player and comper who never get tired of the bridge.</p>
+    <div class="facts">
+      <div><b>3,337</b><span>Chord charts to draw on</span></div>
+      <div><b>666</b><span>Standards built into the library</span></div>
+      <div><b>43</b><span>Instruments, each in its own key and clef</span></div>
+      <div><b>5</b><span>Grooves for the backing track</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="spread" aria-label="Chord changes in your key">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">Tunes: the changes</p>
+      <h2>Every chart, in your key.</h2>
+      <p>Open a tune and its <strong>chord changes</strong> are right there: a clean grid, four bars to a row, with section letters, real repeat signs, first and second endings, codas, segnos and the final barline. Written for <strong>your</strong> instrument, not just "E♭ or B♭": alto and tenor, trumpet, clarinet, trombone in bass clef, guitar an octave up, voice. 43 instruments in all, and <strong>Keys for</strong> switches to anyone else's.</p>
+      <p>The changes come from a <strong>3,337-chart chord reference</strong> (iReal Pro playlists, the iReal forum and the Real Book). The library starts with <strong>666 standards</strong>; search for anything else, and a tune with changes joins your practice list or your group's book with one click.</p>
+    </div>
+    <figure><div class="screen"><img src="shots/practice-grid.jpg" alt="Autumn Leaves chord changes for alto saxophone: sections A, B and C as a four-bar grid starting Am7, D7, Gmaj7, Cmaj7, with Play, tempo, style, count-in, loop and the practice view buttons above" width="1600" height="1013"></div>
+      <figcaption>Autumn Leaves as Curt reads it on alto: concert Gm, written Em, every chord already transposed.</figcaption></figure>
+  </div>
+</section>
+
+<section class="spread flip" aria-label="Practice views as notation">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">Practice views</p>
+      <h2>Real notation, the way you read.</h2>
+      <p>One tap turns the changes into <strong>engraved music</strong>, in your key and your clef, following the tune's form bar for bar. Five ways into the same tune:</p>
+      <dl class="views">
+        <div><dt>Roots</dt><dd>Each chord's root, held as long as the chord lasts. Hear the bass line, learn the form.</dd></div>
+        <div><dt>Arpeggios</dt><dd>The chord tones, up and down, through every change.</dd></div>
+        <div><dt>Scales</dt><dd>The scale for each chord, stepping through the changes, with the altered notes in view.</dd></div>
+        <div><dt>Leading tones</dt><dd>One connected line of chord tones, 3rds and 7ths first. <strong>From the 3rd</strong> and <strong>From the 7th</strong> give two paths.</dd></div>
+        <div><dt>Analysis</dt><dd>A lead sheet of the harmony. <strong>Simplified</strong> names the scale in force; <strong>Advanced</strong> adds Roman numerals, ii–V–I brackets and secondary dominants.</dd></div>
+      </dl>
+      <p>It's the same analysis and the same exercises as my own improv practice app, held to that app's output character for character by automated tests.</p>
+    </div>
+    <div class="notation">
+      <figure class="notation-main"><div class="screen"><img src="shots/practice-analysis.jpg" alt="Autumn Leaves harmonic analysis, Advanced, in E minor for alto: Roman numerals ii, V, I, flat VI under the staff and brackets reading ii–V–I in G and ii–V–i (minor) in E minor" width="1600" height="1493"></div>
+        <figcaption>Analysis, Advanced: where the ii–V–Is are, and which key each one lands in.</figcaption></figure>
+      <figure class="phone notation-phone"><img src="shots/practice-phone.jpg" alt="Leading tones for Autumn Leaves on a phone: a connected line of chord tones, each note labelled 3rd, 7th, 5th or root" width="390" height="664"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="spread" aria-label="Backing track">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">Backing track</p>
+      <h2>A rhythm section on call.</h2>
+      <p>Press <strong>Play</strong> and a band comes in: <strong>sampled bass</strong>, <strong>Rhodes comping</strong> and a woodblock click. The groove comes from the chart, or pick one: <strong>Swing, Latin, Ballad, Waltz, Jazz Manouche</strong>.</p>
+      <p>Jazz Manouche brings in a guitar playing <strong>la pompe</strong> the way Django's rhythm players did, <em>ka-BOOM, CHAK</em>, and it keeps pumping through bars with two chords.</p>
+      <ul class="ticks">
+        <li><strong>Your tempo,</strong> a bar of count-in, and a loop that goes round as long as you do.</li>
+        <li><strong>Your mix:</strong> Bass, Chords and Click each have a volume, and in a practice view the <strong>Line</strong> plays the exercise over the band.</li>
+        <li><strong>Never lose your place.</strong> The bar being played lights up in the grid, in the notation and on the Analysis lead sheet, through repeats and endings as written.</li>
+        <li><strong>Stop is always in reach,</strong> pinned to the bottom of the screen however far you scroll.</li>
+      </ul>
+    </div>
+    <figure><div class="screen"><img src="shots/practice-playing.jpg" alt="Blue Bossa's Roots view playing for alto: the fifth bar, Bm7♭5, is lit in amber on the staff, and a Stop playing button is pinned at the bottom of the screen" width="1600" height="1395"></div>
+      <figcaption>Blue Bossa, Roots view, mid-chorus: the lit bar follows the band, and Stop stays pinned.</figcaption></figure>
+  </div>
+</section>
+
+<section class="spread flip" aria-label="The group's tunes">
+  <div class="wrap">
+    <div class="text">
+      <p class="kicker">For the whole group</p>
+      <h2>Everyone on the same page, in their own key.</h2>
+      <p>A group's <strong>repertoire</strong> lists its book, and under each tune a <strong>Parts</strong> line gives every player's key from the instrument they play in that group. Nobody shows up to rehearsal having learned it in the wrong key.</p>
+      <ul class="ticks">
+        <li><strong>Players build the book.</strong> Anyone in an ensemble can add tunes to its repertoire; classes, jams and events stay with their instructors.</li>
+        <li><strong>And Sunday's list.</strong> Players add tunes to their group's upcoming rehearsals and can take off the ones they added; once the rehearsal is over, only the instructor changes it.</li>
+        <li><strong>My practice list,</strong> private to each player (and a guardian for minors), sits at the top of Tunes.</li>
+        <li><strong>Concert nights carry each group's set,</strong> so the program and the practice pages are the same tunes.</li>
+      </ul>
+    </div>
+    <figure><div class="screen"><img src="shots/group12-parts.jpg" alt="Group 12's repertoire for alto saxophone: All Of Me, Autumn Leaves, Black Orpheus, Caravan and more, each with a Parts line giving the guitarist's and the alto player's keys" width="1600" height="1120"></div>
+      <figcaption>Group 12's book: every tune with each player's part key, guitar (an octave up) and alto alike.</figcaption></figure>
+  </div>
+</section>
+
+<section class="boxes" aria-label="Details">
+  <div class="wrap">
+    <div class="box">
+      <h3>Safe by design</h3>
+      <ul>
+        <li>Members under 13 have no login; guardians act for them.</li>
+        <li>Messages to a minor include their guardians.</li>
+        <li>Lessons are private to teacher, student and guardians.</li>
+        <li>Sign in with an emailed link or a passkey (Face ID or Touch ID), no passwords. The sign-in page remembers your email; untick it on a public computer.</li>
+        <li>The rules are enforced in the database itself.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>What it costs</h3>
+      <table>
+        <tr class="group"><th colspan="2">Monthly</th></tr>
+        <tr><td>Database, sign-in, file storage</td><td>$25</td></tr>
+        <tr><td>Website hosting</td><td>$20</td></tr>
+        <tr><td>Email (up to 3,000 a month)</td><td>Free</td></tr>
+        <tr class="group"><th colspan="2">Yearly</th></tr>
+        <tr><td>Apple App Store membership</td><td>$99</td></tr>
+        <tr><td>Web address (domain)</td><td>about $15</td></tr>
+        <tr class="group"><th colspan="2">One time</th></tr>
+        <tr><td>Google Play registration</td><td>$25</td></tr>
+        <tr class="total"><td>Through December 2026</td><td>Free</td></tr>
+        <tr class="total"><td>Each year from 2027</td><td>about $655</td></tr>
+      </table>
+      <p class="atcost"><strong>2026 is on me.</strong> I'm learning too, so North Star pays nothing through the end of December. From 2027 it's at cost, nothing more: these are the services' own charges, passed straight through. I'm not making any money from ComboSchool.</p>
+      <p class="note">Approximate list prices, not quotes. No per-member fees and no text-message charges.</p>
+    </div>
+    <div class="box">
+      <h3>Where it stands</h3>
+      <ul>
+        <li><b>Live:</b> running now at <a href="https://northstar.jazzcombo.org">northstar.jazzcombo.org</a>, on demo data: Group 12's Sundays are real, the other members made up. The public calendar at <a href="https://northstar.jazzcombo.org/p/northstar">/p/northstar</a> is open to anyone.</li>
+        <li><b>Built:</b> people, groups, schedule, subs, cover, messages, section channels, drafts and publishing, members' gigs, RSVPs on Home; tunes with chord changes in every player's key, practice notation, backing tracks, group repertoires and concert sets.</li>
+        <li><b>In progress:</b> photos and files in messages, reactions, class sign-ups.</li>
+        <li><b>Next:</b> invoices and payments with Stripe, then the phone apps.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="compare" aria-label="Compared with today">
+  <div class="wrap">
+    <p class="kicker" style="color:var(--brass-deep)">Compared with today</p>
+    <h2>What changes, side by side.</h2>
+    <div class="compare-table">
+      <table>
+        <thead><tr><th></th><th>Today: My Music Staff + free Slack</th><th>ComboSchool</th></tr></thead>
+        <tbody>
+          <tr><th>Cost through 2026</th><td>My Music Staff: $16.95/mo with one login, about $76/mo if all 13 teachers log in. Slack: free.</td><td class="win">Free</td></tr>
+          <tr><th>Cost from 2027</th><td>The same</td><td>About $55/mo, flat, however many log in</td></tr>
+          <tr><th>Message history</th><td>Last 90 days visible; older than a year deleted</td><td class="win">Kept for good</td></tr>
+          <tr><th>Conversations tied to rosters and the schedule</th><td>No: Slack doesn't know the groups or the dates</td><td class="win">Yes: every group's chat, every notice opens its date</td></tr>
+          <tr><th>Subs, coach cover, recordings</th><td>Phone, email and text</td><td class="win">Built in</td></tr>
+          <tr><th>Members' gigs and jam RSVPs</th><td>A Slack post, if someone sees it in time</td><td class="win">A Gigs tab, I'm going on every jam, all on your Home page</td></tr>
+          <tr><th>Practice tools for players</th><td>None: Slack and My Music Staff don't know the tunes</td><td class="win">Every tune's changes in each player's key, practice views as notation, a backing track</td></tr>
+          <tr><th>Invoices, online payments, autopay</th><td class="win">Yes (My Music Staff)</td><td>Coming next, with Stripe</td></tr>
+          <tr><th>Card fees</th><td>Stripe or PayPal rates</td><td>Stripe rates, no cut</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">My Music Staff: $16.95/month for the first user plus $4.95 per additional teacher or staff login (mymusicstaff.com/pricing). Slack free-plan limits from Slack's help center. Prices as of October 2026.</p>
+  </div>
+</section>
+
+<section class="billing" aria-label="Coming next: invoices and payments">
+  <div class="wrap">
+    <div class="billing-text">
+      <p class="kicker" style="color:var(--brass-deep)">Coming next · not built yet</p>
+      <h2>Invoices and payments, with Stripe.</h2>
+      <p>The last thing My Music Staff does that ComboSchool doesn't: monthly invoices and paying online. The plan is to add it with <strong>Stripe</strong>, the standard for apps like this.</p>
+      <ul class="ticks">
+        <li><strong>The money goes straight to North Star.</strong> The school connects its own Stripe account. ComboSchool never holds funds and takes no cut.</li>
+        <li><strong>Monthly invoices</strong> built from rosters and lessons, with a <strong>Pay online</strong> button and automatic "Paid" once the payment clears.</li>
+        <li><strong>Autopay.</strong> A member or guardian saves a card or bank account once on Stripe's secure page and ticks <em>Pay automatically each month</em>. Reminder before each charge, emailed receipt after, automatic retries if a card fails.</li>
+        <li><strong>Members stay in control:</strong> switch autopay off, change the card, or pay any invoice by hand.</li>
+        <li><strong>The office sees it all:</strong> who's on autopay, what's paid, what's overdue.</li>
+      </ul>
+    </div>
+    <div class="box fees">
+      <h3>Stripe's fees</h3>
+      <table>
+        <tr class="group"><th colspan="2">Per payment, paid by the school</th></tr>
+        <tr><td>Card (and Apple Pay, Google Pay)</td><td>2.9% + 30¢</td></tr>
+        <tr><td>Bank account (ACH)</td><td>0.8%, max $5</td></tr>
+        <tr class="group"><th colspan="2">On a $150 monthly invoice</th></tr>
+        <tr><td>By card</td><td>about $4.65</td></tr>
+        <tr><td>By bank account</td><td>about $1.20</td></tr>
+        <tr class="group"><th colspan="2">Everything else</th></tr>
+        <tr><td>Monthly fee, autopay, receipts</td><td>None</td></tr>
+        <tr><td>ComboSchool's cut</td><td>None</td></tr>
+      </table>
+      <p class="note">Approximate list prices; check stripe.com/pricing. Autopay by bank account is the cheapest way to pay.</p>
+    </div>
+  </div>
+</section>
+
+<section class="builder" aria-label="From the builder">
+  <div class="wrap">
+    <p class="kicker" style="color:var(--brass)">From the builder</p>
+    <blockquote>I went a little <em>crazy</em> today.</blockquote>
+    <div class="builder-text">
+      <p>I retired from a career in technology, and for a while now I've been building two apps for myself: one to run my gigs, and one to practice jazz improvisation. Today I went a little crazy and built this for North Star: a website that works on any phone, with iPhone and Android apps next, all in a day.</p>
+      <p>I mean that literally. Everything in this brochure, every screen you see, the messaging, the schedule, the gigs, the channels, the tune library and the practice tools, went from nothing to running live between a Monday morning and that evening, with 618 automated tests and three user manuals to show for it. Along the way I fixed things in my own two apps, because they share the same music engine. Five years ago this would have been a team and a budget. Today it was me, a laptop, and a very long cup of coffee.</p>
+      <p>Honestly, it helps me too. As a Group 12 player I wanted one place for our schedule, our conversation and our tunes. The tune library, the chord charts and the practice views come straight from my own apps, so the tools that help me learn a tune are here for everyone.</p>
+      <p>That's the part I'm proudest of. The harmonic analysis, the exercises and the backing band are the same ones I practice with every day, checked against my app note for note. If a student at North Star wants to know why the bridge of Autumn Leaves feels the way it does, it's one tap away, in their key.</p>
+      <p class="sig">Curt Bergmann · alto sax, Group 12</p>
+    </div>
+  </div>
+</section>
+
+<section class="ask" aria-label="The ask">
+  <div class="wrap">
+    <div>
+      <p class="kicker" style="color:var(--brass-deep)">The ask</p>
+      <h2 style="margin-top:.6rem">One term. <em>Three or four groups. Free.</em></h2>
+      <ol>
+        <li><span>Pick the pilot groups and willing coaches. Group 12 is already set up.</span></li>
+        <li><span>The office invites those members on the live site. Each signs in from an emailed link, then saves a passkey if they like.</span></li>
+        <li><span>Coaches run subs, cover and group messages through it; the office posts those groups' jams and concerts; players RSVP, post their gigs and learn the book from the tune pages, in their own keys.</span></li>
+        <li><span>At term's end, compare time spent on subs and cover, and ask members whether they'd keep it, and whether they practiced more.</span></li>
+      </ol>
+    </div>
+    <div class="questions">
+      <h3>Questions for the faculty</h3>
+      <ul>
+        <li>Which groups should pilot, and which coaches are in?</li>
+        <li>Should subs default to "ask people" or "open to anyone"?</li>
+        <li>Who publishes events, and do drafts need faculty sign-off?</li>
+        <li>Is email enough for last-minute changes until the phone apps arrive?</li>
+        <li>Would coaches point players to the practice views between rehearsals, or use them in the room?</li>
+        <li>What would make you stop using it?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><b>ComboSchool</b> · built by a North Star member: free through 2026, at cost after, never for profit</span>
+    <span>Live at northstar.jazzcombo.org. Screens show the app running on demo data. Group 12's schedule and venue, North Star's jams and Curt's quartet are real; other members are fictional.</span>
+  </div>
+</footer>
