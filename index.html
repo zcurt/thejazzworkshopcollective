@@ -20,6 +20,9 @@
 <meta property="og:url" content="https://jazzcombo.org/">
 <meta property="og:image" content="https://jazzcombo.org/tyt-showtime.jpg">
 <meta name="theme-color" content="#fbfaf7">
+<link rel="icon" href="tyt-logo.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -29,6 +32,7 @@
   "genre": ["Jazz", "Bossa nova", "Swing"],
   "email": "booking@jazzcombo.org",
   "image": "https://jazzcombo.org/tyt-showtime.jpg",
+  "logo": "https://jazzcombo.org/tyt-logo-512.png",
   "areaServed": "Minneapolis–Saint Paul, Minnesota",
   "member": [
     { "@type": "Person", "name": "Curt Bergmann", "roleName": "Alto saxophone", "url": "https://curtbergmann.com/" },
@@ -91,7 +95,8 @@
     border-bottom: 1px solid var(--rule);
   }
   header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; }
-  .wordmark { font-family: var(--display); font-weight: 650; font-variation-settings: "SOFT" 50; font-size: 1.55rem; line-height: 1; letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; }
+  .wordmark { font-family: var(--display); font-weight: 650; font-variation-settings: "SOFT" 50; font-size: 1.55rem; line-height: 1; letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.6rem; }
+  .wordmark .mark { width: 3.2rem; height: 3.2rem; flex: none; margin-block: -0.4rem; }
   nav.links { display: flex; align-items: center; gap: 1.4rem; font-size: 0.92rem; }
   nav.links a { text-decoration: none; color: var(--ink-soft); }
   nav.links a:hover { color: var(--ink); }
@@ -106,7 +111,7 @@
   .btn[disabled] { opacity: 0.6; cursor: wait; }
   nav.links .btn { padding: 0.6rem 1rem; color: var(--paper); }
   @media (max-width: 760px) { nav.links a:not(.btn) { display: none; } }
-  @media (max-width: 480px) { .wordmark { white-space: normal; font-size: 1.25rem; line-height: 1.1; } }
+  @media (max-width: 480px) { .wordmark { white-space: normal; font-size: 1.25rem; line-height: 1.1; } .wordmark .mark { width: 2.6rem; height: 2.6rem; } }
 
   /* hero */
   .hero .wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-block: clamp(2.5rem, 7vw, 5.5rem); }
@@ -217,7 +222,8 @@
 
   footer { background: var(--navy); color: #d9d2c4; }
   footer .wrap { padding-block: 3rem; display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; }
-  footer .wordmark { color: #f2ede3; }
+  footer .wordmark { color: #f2ede3; gap: 0.8rem; }
+  footer .wordmark .mark { width: 3.6rem; height: 3.6rem; }
   footer p { font-size: 0.9rem; }
   footer .sub { display: grid; gap: 0.6rem; align-content: start; min-width: 0; }
   footer .sub div { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -234,7 +240,7 @@
 
 <header class="site">
   <div class="wrap">
-    <a class="wordmark" href="#top">Take Your Time</a>
+    <a class="wordmark" href="#top"><img class="mark" src="tyt-logo.svg" alt="" width="40" height="40">Take Your Time</a>
     <nav class="links" aria-label="Sections">
       <a href="#events">Events</a>
       <a href="#formats">Formats</a>
@@ -516,7 +522,7 @@
 <footer>
   <div class="wrap">
     <div class="sub">
-      <span class="wordmark">Take Your Time</span>
+      <span class="wordmark"><img class="mark" src="tyt-logo.svg" alt="" width="58" height="58">Take Your Time</span>
       <p>Live jazz for corporate events, private celebrations and venues in the Twin Cities.</p>
       <p><a href="mailto:booking@jazzcombo.org">booking@jazzcombo.org</a></p>
     </div>
