@@ -40,7 +40,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,500..700,50;1,9..144,600,50&family=Hanken+Grotesk:wght@400;500;600&display=swap">
 <style>
   /* Light-only on purpose: the music sites stay dark-on-white. */
   :root {
@@ -51,7 +51,7 @@
     --brass: #9a7535;
     --rule: #e3ddd2;
     --navy: #1d2a3d;
-    --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
     --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
     color-scheme: light;
   }
@@ -73,7 +73,7 @@
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
-  h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; font-variation-settings: "SOFT" 50; text-wrap: balance; margin: 0; }
   h2 { font-size: 2.2rem; line-height: 1.15; }
   h3 { font-size: 1.6rem; line-height: 1.2; }
   p { margin: 0; }
@@ -91,7 +91,7 @@
     border-bottom: 1px solid var(--rule);
   }
   header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; }
-  .wordmark { font-family: var(--display); font-size: 1.15rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+  .wordmark { font-family: var(--display); font-weight: 650; font-variation-settings: "SOFT" 50; font-size: 1.55rem; line-height: 1; letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; }
   nav.links { display: flex; align-items: center; gap: 1.4rem; font-size: 0.92rem; }
   nav.links a { text-decoration: none; color: var(--ink-soft); }
   nav.links a:hover { color: var(--ink); }
@@ -106,13 +106,13 @@
   .btn[disabled] { opacity: 0.6; cursor: wait; }
   nav.links .btn { padding: 0.6rem 1rem; color: var(--paper); }
   @media (max-width: 760px) { nav.links a:not(.btn) { display: none; } }
-  @media (max-width: 480px) { .wordmark { white-space: normal; letter-spacing: 0.12em; font-size: 1rem; line-height: 1.25; } }
+  @media (max-width: 480px) { .wordmark { white-space: normal; font-size: 1.25rem; line-height: 1.1; } }
 
   /* hero */
   .hero .wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-block: clamp(2.5rem, 7vw, 5.5rem); }
   .hero-text { display: grid; gap: 1.4rem; min-width: 0; }
   .hero h1 { font-size: clamp(2.4rem, 5.2vw, 3.9rem); line-height: 1.04; letter-spacing: -0.01em; }
-  .tempo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; font-family: var(--display); font-style: italic; color: var(--brass); font-size: 1.1rem; }
+  .tempo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; font-family: var(--display); font-style: italic; font-weight: 500; color: var(--brass); font-size: 1.1rem; }
   .tempo span { font: 500 0.78rem/1 var(--body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
   .ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; padding-top: 0.4rem; }
   figure.photo { margin: 0 0.9rem 0.9rem 0; position: relative; min-width: 0; isolation: isolate; }
@@ -129,7 +129,7 @@
   .proof { border-block: 1px solid var(--rule); background: var(--paper-2); }
   .proof .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding-block: 1.4rem; }
   .proof div { display: grid; gap: 0.2rem; min-width: 0; }
-  .proof strong { font-family: var(--display); font-weight: 400; font-size: 1.15rem; }
+  .proof strong { font-family: var(--display); font-weight: 600; font-size: 1.15rem; }
   .proof span { font-size: 0.85rem; color: var(--ink-soft); }
   @media (max-width: 720px) { .proof .wrap { grid-template-columns: 1fr; gap: 1rem; } }
 
