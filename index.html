@@ -7,893 +7,541 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-5S6QW6PCTV');
 </script>
-  <meta charset="utf-8" />
-  <link rel="canonical" href="https://jazzcombo.org/">
-  <title>The Jazz Workshop Collective — Quartet & Ensemble</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="The Jazz Workshop Collective presents straight-ahead jazz in quartet and larger ensemble formats, rooted in jazz standards and the Great American Songbook." />
-  <meta property="og:title" content="The Jazz Workshop Collective" />
-  <meta property="og:description" content="Straight-ahead jazz in quartet and larger ensemble formats." />
-  <meta property="og:type" content="website" />
-
-  <style>
-    :root {
-      --hero-image: url('IMG_8513.jpeg');
-      --bg: #0f0f11;
-      --fg: #f5f7fa;
-      --muted: #b8c0cc;
-      --accent: #ffd166;
-      --card: #17181b;
-      --link: #7abaff;
-      --maxw: 72rem;
-      --pad: clamp(1rem, 2vw + .5rem, 2rem);
-    }
-
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg:#ffffff;
-        --fg:#0d0f12;
-        --muted:#5b6470;
-        --card:#f5f7fb;
-        --link:#0057d9;
-      }
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin:0; padding:0; height:100%; }
-
-    body {
-      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color: var(--fg);
-      background: var(--bg);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    a { color: var(--link); text-decoration: none; }
-    a:hover, a:focus { text-decoration: underline; }
-
-    .wrap {
-      max-width: var(--maxw);
-      margin-inline: auto;
-      padding: 0 var(--pad);
-    }
-
-    header.hero {
-      position: relative;
-      width: 100%;
-      color: #fff;
-      overflow: hidden;
-    }
-
-    header.hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.58));
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    header.hero .hero-media {
-      position: relative;
-      min-height: clamp(45vh, 60vw, 70vh);
-      z-index: 0;
-    }
-
-    header.hero .hero-media img {
-      display: block;
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-position: top center;
-      object-fit: cover;
-    }
-
-    header.hero .brand {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: clamp(1rem, 3vh, 2.5rem);
-      text-align: center;
-      padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2.5rem);
-      background: rgba(0,0,0,0.38);
-      backdrop-filter: blur(2px);
-      border-radius: .5rem;
-      max-width: min(98%, 62rem);
-      z-index: 2;
-      line-height: 1.25;
-    }
-
-    header.hero .brand h1 {
-      margin: 0 0 .25rem 0;
-      font-weight: 800;
-      letter-spacing: .5px;
-      line-height: 1.1;
-      font-size: clamp(1.8rem, 5vw, 2.75rem);
-    }
-
-    header.hero .brand .tagline {
-      margin: 0;
-      font-size: clamp(1rem, 2.6vw, 1.25rem);
-      color: #f0f3f8;
-      opacity: .95;
-    }
-
-    @media (orientation: portrait) and (max-width: 500px) {
-      header.hero .hero-media {
-        position: static;
-        min-height: unset;
-      }
-
-      header.hero .hero-media img {
-        position: static;
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        object-position: top center;
-      }
-
-      header.hero { background: #000; }
-
-      header.hero .brand {
-        width: 96vw;
-        max-width: none;
-        padding: 0.75rem 1rem;
-        bottom: 1rem;
-      }
-
-      header.hero .brand h1 {
-        font-size: clamp(1.2rem, 4.2vw, 1.8rem);
-      }
-
-      header.hero .brand .tagline {
-        font-size: clamp(0.85rem, 3.2vw, 1rem);
-      }
-    }
-
-    @media (orientation: landscape) and (max-width: 900px) {
-      header.hero .hero-media { min-height: 70vh; }
-      header.hero .hero-media img { object-fit: contain; }
-    }
-
-    @media (max-height: 600px) {
-      header.hero .brand h1 { font-size: clamp(1.4rem, 3.5vw, 2.1rem); }
-      header.hero .brand .tagline { font-size: clamp(0.9rem, 2vw, 1rem); }
-    }
-
-    @media (max-height: 450px) {
-      header.hero .brand h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
-      header.hero .brand .tagline { font-size: clamp(0.8rem, 1.8vw, 0.95rem); }
-    }
-
-    nav.site {
-      background: transparent;
-      position: sticky;
-      top: 0;
-      border-bottom: 1px solid rgba(128,128,128,.15);
-      backdrop-filter: blur(6px);
-      z-index: 10;
-    }
-
-    nav .inner {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      padding: .6rem var(--pad);
-      overflow-x: auto;
-    }
-
-    nav a {
-      padding: .4rem .6rem;
-      border-radius: .5rem;
-      color: var(--fg);
-      white-space: nowrap;
-    }
-
-    nav a:hover { background: rgba(128,128,128,.12); }
-
-    section { padding: clamp(1.75rem, 4vw, 3rem) 0; }
-
-    .section-title {
-      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-      margin: 0 0 .75rem 0;
-      letter-spacing: .3px;
-    }
-
-    .lede {
-      color: var(--muted);
-      max-width: 64ch;
-      margin: .25rem 0 0 0;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(128,128,128,.15);
-      border-radius: 12px;
-      padding: clamp(1rem, 2.5vw, 1.25rem);
-    }
-
-    .grid {
-      display: grid;
-      gap: clamp(1rem, 2vw, 1.25rem);
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 800px) {
-      .grid-2 { grid-template-columns: 1fr 1fr; }
-    }
-
-    ul.clean {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: .5rem;
-    }
-
-    ul.clean li {
-      padding: .6rem .75rem;
-      border-radius: .6rem;
-      background: rgba(128,128,128,.08);
-      border: 1px solid rgba(128,128,128,.15);
-    }
-
-    .muted { color: var(--muted); }
-
-    .badge {
-      display: inline-block;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .03em;
-      text-transform: uppercase;
-      color: #111;
-      background: var(--accent);
-      border-radius: 999px;
-      padding: .18rem .55rem;
-      margin-right: .4rem;
-      white-space: nowrap;
-    }
-
-    .badge.secondary {
-      background: rgba(122,186,255,.95);
-    }
-
-    .ensemble-card h3,
-    .media-item h3 {
-      margin-top: 0;
-    }
-
-    .ensemble-card p {
-      margin-bottom: 1rem;
-    }
-
-    .performance-list li {
-      display: block;
-    }
-
-    .performance-meta {
-      display: block;
-      margin-top: .15rem;
-    }
-
-    .media-grid {
-      display: grid;
-      gap: clamp(1rem, 2vw, 1.25rem);
-      grid-template-columns: 1fr;
-      margin-top: 1rem;
-    }
-
-    @media (min-width: 800px) {
-      .media-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    .track {
-      margin-bottom: 1.25rem;
-    }
-
-    .track:last-child {
-      margin-bottom: 0;
-    }
-
-    .track h4 {
-      margin: 0 0 .35rem 0;
-      font-size: 1.05rem;
-    }
-
-    .track p {
-      margin: .35rem 0 .75rem 0;
-    }
-
-    audio,
-    video {
-      width: 100%;
-      display: block;
-      border-radius: .5rem;
-    }
-
-    #coach { margin: 3rem 0; }
-
-    #coach .coach-block {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      gap: 1.5rem;
-    }
-
-    #coach .coach-photo img {
-      width: 220px;
-      height: auto;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    }
-
-    #coach .coach-text {
-      flex: 1;
-      min-width: 250px;
-      font-size: 1.05rem;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 640px) {
-      #coach .coach-block {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      #coach .coach-photo img {
-        width: 70%;
-        max-width: 250px;
-      }
-    }
-
-    footer {
-      padding: 2rem 0 3rem;
-      color: var(--muted);
-      border-top: 1px solid rgba(128,128,128,.15);
-    }
-
-    /* --- ENSEMBLE PHOTOS --- */
-    .ensemble-photo {
-      margin-top: 1rem;
-      overflow: hidden;
-      border-radius: .75rem;
-      border: 1px solid rgba(128,128,128,.15);
-    }
-
-    .ensemble-photo img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    .ensemble-caption {
-      margin-top: .5rem;
-      font-size: .92rem;
-      color: var(--muted);
-    }
-.performance-card.with-photo {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Take Your Time · Live Jazz for Corporate and Private Events · Twin Cities</title>
+<link rel="canonical" href="https://jazzcombo.org/">
+<meta name="description" content="Take Your Time is a Twin Cities jazz group for corporate events, private celebrations and venues. Trio, quartet, or quartet with vocals: swing, bossa nova and the Great American Songbook.">
+<meta property="og:title" content="Take Your Time · Live Jazz, Twin Cities">
+<meta property="og:description" content="Live jazz for evenings that shouldn't be rushed. Corporate events, private celebrations and venues.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jazzcombo.org/">
+<meta property="og:image" content="https://jazzcombo.org/tyt-showtime.jpg">
+<meta name="theme-color" content="#fbfaf7">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Take Your Time",
+  "url": "https://jazzcombo.org/",
+  "genre": ["Jazz", "Bossa nova", "Swing"],
+  "email": "booking@jazzcombo.org",
+  "image": "https://jazzcombo.org/tyt-showtime.jpg",
+  "areaServed": "Minneapolis–Saint Paul, Minnesota",
+  "member": [
+    { "@type": "Person", "name": "Curt Bergmann", "roleName": "Alto saxophone", "url": "https://curtbergmann.com/" },
+    { "@type": "Person", "name": "John Pohl", "roleName": "Guitar" },
+    { "@type": "Person", "name": "Maria Meade", "roleName": "Bass and vocals" },
+    { "@type": "Person", "name": "Jon Norstad", "roleName": "Drums" }
+  ]
 }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+  /* Light-only on purpose: the music sites stay dark-on-white. */
+  :root {
+    --paper: #fbfaf7;
+    --paper-2: #f3f0ea;
+    --ink: #18202c;
+    --ink-soft: #545b68;
+    --brass: #9a7535;
+    --rule: #e3ddd2;
+    --navy: #1d2a3d;
+    --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+    --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 4.5rem; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1rem/1.65 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--brass); outline-offset: 3px;
+  }
+  .wrap {
+    max-width: 68rem; margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
+  h2 { font-size: 2.2rem; line-height: 1.15; }
+  h3 { font-size: 1.6rem; line-height: 1.2; }
+  p { margin: 0; }
+  .eyebrow {
+    font: 600 0.74rem/1.3 var(--body); letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  .lede { color: var(--ink-soft); max-width: 36rem; }
 
-.performance-card.with-photo .performance-copy {
-  flex: 1;
-}
+  /* header */
+  header.site {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(251, 250, 247, 0.94);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; }
+  .wordmark { font-family: var(--display); font-size: 1.15rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+  nav.links { display: flex; align-items: center; gap: 1.4rem; font-size: 0.92rem; }
+  nav.links a { text-decoration: none; color: var(--ink-soft); }
+  nav.links a:hover { color: var(--ink); }
+  .btn {
+    display: inline-block; font: 600 0.9rem/1 var(--body); letter-spacing: 0.04em;
+    padding: 0.85rem 1.3rem; border: 1px solid var(--ink); text-decoration: none; cursor: pointer;
+    background: var(--ink); color: var(--paper);
+  }
+  .btn:hover { background: var(--navy); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn.ghost:hover { background: var(--paper-2); }
+  .btn[disabled] { opacity: 0.6; cursor: wait; }
+  nav.links .btn { padding: 0.6rem 1rem; color: var(--paper); }
+  @media (max-width: 760px) { nav.links a:not(.btn) { display: none; } }
+  @media (max-width: 480px) { .wordmark { white-space: normal; letter-spacing: 0.12em; font-size: 1rem; line-height: 1.25; } }
 
-.performance-card.with-photo .showtime-photo {
-  width: 40%;
-  max-width: 520px;
-  height: auto;
-  display: block;
-  margin: 0;
-}
-
-@media (max-width: 700px) {
-  .performance-card.with-photo {
-    display: block;
+  /* hero */
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-block: clamp(2.5rem, 7vw, 5.5rem); }
+  .hero-text { display: grid; gap: 1.4rem; min-width: 0; }
+  .hero h1 { font-size: clamp(2.4rem, 5.2vw, 3.9rem); line-height: 1.04; letter-spacing: -0.01em; }
+  .tempo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; font-family: var(--display); font-style: italic; color: var(--brass); font-size: 1.1rem; }
+  .tempo span { font: 500 0.78rem/1 var(--body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; padding-top: 0.4rem; }
+  figure.photo { margin: 0 0.9rem 0.9rem 0; position: relative; min-width: 0; isolation: isolate; }
+  figure.photo img {
+    display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 42% center;
+    filter: grayscale(1) contrast(1.08) brightness(1.04) sepia(0.12);
+  }
+  figure.photo::after { content: ""; position: absolute; inset: 0.9rem -0.9rem -0.9rem 0.9rem; border: 1px solid var(--brass); z-index: -1; }
+  @media (max-width: 820px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    figure.photo { order: -1; }
+    figure.photo img { aspect-ratio: 16 / 10; }
   }
 
-  .performance-card.with-photo .showtime-photo {
-    width: 100%;
-    margin-top: 0.75rem;
+  /* credentials strip */
+  .proof { border-block: 1px solid var(--rule); background: var(--paper-2); }
+  .proof .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding-block: 1.4rem; }
+  .proof div { display: grid; gap: 0.2rem; min-width: 0; }
+  .proof strong { font-family: var(--display); font-weight: 400; font-size: 1.15rem; }
+  .proof span { font-size: 0.85rem; color: var(--ink-soft); }
+  @media (max-width: 720px) { .proof .wrap { grid-template-columns: 1fr; gap: 1rem; } }
+
+  /* sections */
+  section.band .wrap { padding-block: clamp(3.5rem, 8vw, 6rem); display: grid; gap: 2.4rem; }
+  .head { display: grid; gap: 0.8rem; }
+  .head::after { content: ""; width: 3rem; height: 1px; background: var(--brass); margin-top: 0.4rem; }
+  section.alt { background: var(--paper-2); border-block: 1px solid var(--rule); }
+
+  .events { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+  .events article { display: grid; gap: 0.7rem; align-content: start; min-width: 0; }
+  .events p { color: var(--ink-soft); }
+  @media (max-width: 820px) { .events { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .formats { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--rule); background: var(--paper); }
+  .formats article { padding: 1.8rem; display: grid; gap: 0.8rem; align-content: start; min-width: 0; }
+  .formats article + article { border-left: 1px solid var(--rule); }
+  .formats .who { font-size: 0.88rem; color: var(--brass); font-weight: 500; }
+  .formats p { color: var(--ink-soft); font-size: 0.95rem; }
+  @media (max-width: 820px) {
+    .formats { grid-template-columns: 1fr; }
+    .formats article + article { border-left: 0; border-top: 1px solid var(--rule); }
   }
-}
+  .expect { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem 2.5rem; padding: 0; margin: 0; list-style: none; }
+  .expect li { padding-left: 1.3rem; position: relative; color: var(--ink-soft); }
+  .expect li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 0.6rem; height: 1px; background: var(--brass); }
+  @media (max-width: 620px) { .expect { grid-template-columns: 1fr; } }
+
+  .listen { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .clip { border: 1px solid var(--rule); background: var(--paper); display: grid; min-width: 0; }
+  .clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--navy); }
+  .clip .meta { padding: 1rem 1.2rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: 0.9rem; }
+  .clip .meta span { color: var(--ink-soft); }
+  @media (max-width: 720px) { .listen { grid-template-columns: 1fr; } }
+
+  .rep { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .rep div { min-width: 0; }
+  .rep h3 { font-size: 1.2rem; font-style: italic; padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule); margin-bottom: 0.7rem; }
+  .rep ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; font-size: 0.95rem; }
+  .rep small { color: var(--brass); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; margin-left: 0.3rem; }
+  @media (max-width: 900px) { .rep { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .rep { grid-template-columns: 1fr; } }
+
+  .players { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .players article { display: grid; gap: 0.6rem; align-content: start; min-width: 0; padding-top: 1.2rem; border-top: 1px solid var(--brass); }
+  .players h3 { font-size: 1.3rem; }
+  .players .inst { font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+  .players p { font-size: 0.92rem; color: var(--ink-soft); }
+  .players a { color: var(--brass); }
+  @media (max-width: 900px) { .players { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .players { grid-template-columns: 1fr; } }
+
+  /* public dates */
+  .dates { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+  .dates li { display: grid; grid-template-columns: 11rem 1fr; gap: 1rem; padding-block: 1rem; border-bottom: 1px solid var(--rule); }
+  .dates time { font-family: var(--display); font-size: 1.15rem; }
+  .dates span { color: var(--ink-soft); }
+  .dates a { color: var(--ink); }
+  @media (max-width: 560px) { .dates li { grid-template-columns: 1fr; gap: 0.2rem; } }
+
+  /* booking */
+  .book { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(2rem, 5vw, 4rem); }
+  .book aside { display: grid; gap: 1.2rem; align-content: start; min-width: 0; }
+  .book aside p { color: var(--ink-soft); }
+  .addr { font-family: var(--display); font-size: 1.25rem; overflow-wrap: anywhere; color: var(--ink) !important; }
+  .addr a { text-decoration: none; }
+  form.inquiry { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.2rem; min-width: 0; }
+  .field { display: grid; gap: 0.35rem; min-width: 0; }
+  .field.full { grid-column: 1 / -1; }
+  .field.trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+  label .opt { font-weight: 400; text-transform: none; letter-spacing: 0; }
+  input, select, textarea {
+    font: inherit; color: var(--ink); background: var(--paper); width: 100%;
+    border: 1px solid var(--rule); border-bottom-color: var(--ink-soft); padding: 0.7rem 0.75rem; border-radius: 0;
+  }
+  textarea { min-height: 7rem; resize: vertical; }
+  .formfoot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+  .formfoot output { font-size: 0.95rem; color: var(--brass); }
+  @media (max-width: 820px) { .book { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) { form.inquiry { grid-template-columns: 1fr; } }
+
+  footer { background: var(--navy); color: #d9d2c4; }
+  footer .wrap { padding-block: 3rem; display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; }
+  footer .wordmark { color: #f2ede3; }
+  footer p { font-size: 0.9rem; }
+  footer .sub { display: grid; gap: 0.6rem; align-content: start; min-width: 0; }
+  footer .sub div { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  footer label { color: #d9d2c4; }
+  footer input { background: transparent; color: #f2ede3; border-color: #4a5668; border-bottom-color: #9a8a6c; flex: 1 1 12rem; width: auto; }
+  footer .btn { background: #e9e2d3; color: var(--navy); border-color: #e9e2d3; }
+  footer .small { grid-column: 1 / -1; border-top: 1px solid #34425a; padding-top: 1.4rem; font-size: 0.82rem; color: #a9a294; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; }
+  footer .small a { color: #e9e2d3; }
+  @media (max-width: 720px) { footer .wrap { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 </style>
 </head>
-
 <body>
 
-<header class="hero" role="banner" aria-label="Band hero image">
-  <div class="hero-media">
-    <img src="IMG_8513.jpeg" alt="The Jazz Workshop Collective performing live">
-  </div>
-
-  <div class="brand" aria-label="Site heading">
-    <h1>The Jazz Workshop Collective</h1>
-    <p class="tagline">Straight-ahead jazz in quartet and ensemble formats, rooted in standards, swing, bebop, and the Great American Songbook.</p>
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="#top">Take Your Time</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#events">Events</a>
+      <a href="#formats">Formats</a>
+      <a href="#listen">Listen</a>
+      <a href="#repertoire">Repertoire</a>
+      <a href="#band">The band</a>
+      <a class="btn" href="#book">Book the band</a>
+    </nav>
   </div>
 </header>
 
-<nav class="site" aria-label="Primary">
-  <div class="inner wrap">
-    <a href="#news">News</a>
-    <a href="#about">About</a>
-    <a href="#groups">Groups</a>
-    <a href="#members">Musicians</a>
-    <a href="#performances">Performances</a>
-    <a href="#media">Recordings</a>
-    <a href="#coach">Coach</a>
-  </div>
-</nav>
-
-<main id="content">
-
-  <section id="news">
+<main id="top">
+  <section class="hero">
     <div class="wrap">
-      <h2 class="section-title">News</h2>
-
-      <p class="lede">
-        The Take Your Time Quartet has a monthly residency at Showtime Studio and Coffee, performing the third Thursday of every month from 1pm to 2:30pm.
-      </p>
-
-      <p>
-        Tonight, Sunday, October 18<sup>th</sup>, Take Your Time is playing from 4 to 6 p.m. at the
-        Bungalow Inn in Hudson, WI, for a private party.
-      </p>
-
-      <p>
-        Our next third-Thursday performance is November 19<sup>th</sup> at 1 p.m. at
-        <a href="https://www.showtimestudioandcoffee.com/upcoming-events" target="_blank" rel="noopener">
-          Showtime Studio and Coffee, Roseville, MN.
-        </a>
-      </p>
-<form
-  action="https://buttondown.com/api/emails/embed-subscribe/curt"
-  method="post"
-  class="embeddable-buttondown-form"
->
-  <p>
-    Get news about upcoming performances by subscribing to our newsletter
-  </p>
-
-  <label for="bd-email" style="margin-left: 20px;">Enter your email</label>
-  <input type="email" name="email" id="bd-email" />
-  <input type="submit" value="Subscribe" />
-</form>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="wrap">
-      <h2 class="section-title">About</h2>
-
-      <p class="lede">
-        The Jazz Workshop Collective is a flexible family of straight-ahead jazz groups performing repertoire rooted in swing, bebop, modal jazz, jazz standards, and the Great American Songbook.
-      </p>
-
-      <p>
-        The Collective performs as both an intimate quartet and a larger ensemble, with overlapping musicians, shared repertoire, and distinct ensemble personalities.
-      </p>
-
-      <p>
-        Booking &amp; inquiries:
-        <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a>
-      </p>
-    </div>
-  </section>
-
-  <section id="groups">
-    <div class="wrap">
-      <h2 class="section-title">Groups</h2>
-
-      <div class="grid grid-2">
-        <article class="card ensemble-card">
-          <h3><span class="badge">Quartet</span>Take Your Time Quartet</h3>
-
-          <p>
-            A smaller, conversational combo focused on melody, swing, and space.
-            The quartet format is ideal for coffee shops, receptions,
-            community events, listening rooms, and daytime performances.
-          </p>
-
-          <p class="muted">
-            Typical instrumentation: saxophone, guitar, bass, and drums.
-          </p>
-
-          <div class="ensemble-photo">
-            <img
-              src="take-your-time-live1.PNG"
-              alt="Take Your Time Quartet performing live"
-            />
-          </div>
-
-          <p class="ensemble-caption">
-            The Take Your Time Quartet performing live in the Twin Cities.
-          </p>
-        </article>
-
-        <article class="card ensemble-card">
-          <h3><span class="badge secondary">Ensemble</span>Jazz Workshop Collective Ensemble</h3>
-
-          <p>
-            A fuller ensemble sound featuring vocals, horns, and rhythm section.
-            The ensemble performs in six- and seven-piece configurations depending on repertoire, personnel, and venue.
-          </p>
-
-          <p>
-            The larger group draws on classic jazz standards, vocal features,
-            instrumental blowing tunes, and arrangements developed through the workshop tradition.
-          </p>
-
-          <p class="muted">
-            Typical instrumentation: vocals, alto saxophone, tenor saxophone, piano, guitar, bass, and drums.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="members">
-    <div class="wrap">
-      <h2 class="section-title">Musicians</h2>
-
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>Take Your Time Quartet</h3>
-
-          <ul class="clean" aria-label="Quartet roster">
-            <li><strong>Alto Saxophone</strong> — <span class="muted">Curt Bergmann</span></li>
-            <li><strong>Guitar</strong> — <span class="muted">John Pohl</span></li>
-            <li><strong>Bass</strong> — <span class="muted">Maria Meade</span></li>
-            <li><strong>Drums</strong> — <span class="muted">Jon Norstad</span></li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Jazz Workshop Collective Ensemble</h3>
-
-          <ul class="clean" aria-label="Ensemble roster">
-            <li><strong>Vocals</strong> — <span class="muted">Tory Clark</span></li>
-            <li><strong>Alto Saxophone</strong> — <span class="muted">Curt Bergmann</span></li>
-            <li><strong>Tenor Saxophone</strong> — <span class="muted">Charles Burdick</span></li>
-            <li><strong>Piano</strong> — <span class="muted">Madeline Elmhirst</span></li>
-            <li><strong>Guitar</strong> — <span class="muted">John Pohl</span></li>
-            <li><strong>Bass</strong> — <span class="muted">Maria Meade</span></li>
-            <li><strong>Drums</strong> — <span class="muted">Jon Norstad</span></li>
-          </ul>
-
-          <p class="muted">
-            The ensemble appears in sextet or septet form depending on the performance.
-          </p>
+      <div class="hero-text">
+        <p class="eyebrow">Live jazz · Twin Cities</p>
+        <h1>Live jazz for evenings that <em>shouldn&rsquo;t be rushed.</em></h1>
+        <p class="lede">Take Your Time plays corporate receptions, private celebrations and venues across the Twin Cities. Swing, bossa nova and the Great American Songbook, at a volume your guests can talk over.</p>
+        <p class="tempo">Tempo comodo <span>at an easy, comfortable pace</span></p>
+        <div class="ctas">
+          <a class="btn" href="#book">Book Take Your Time</a>
+          <a class="btn ghost" href="#listen">Hear the band</a>
         </div>
       </div>
+      <figure class="photo">
+        <img src="tyt-showtime.jpg" width="1600" height="900" alt="Take Your Time performing on stage at Showtime Studio and Coffee" fetchpriority="high">
+      </figure>
     </div>
   </section>
 
-  <section id="performances">
+  <div class="proof">
     <div class="wrap">
-      <h2 class="section-title">Performances</h2>
-
-      <p class="lede">
-        Performances from the quartet and larger ensemble are listed together to show the shared musical life of the Collective.
-      </p>
-      <h3>Upcoming Performances</h3>
-
-      <div class="card">
-        <ul class="clean performance-list" aria-label="Upcoming shows">
-          <li>
-            <strong>2026-10-18 at 4pm</strong> --
-            Bungalow Inn, Hudson, WI (private party)
-            <span class="performance-meta"><span class="badge">Take Your Time Quartet</span></span>
-          </li>
-          <li>
-            <strong>2026-11-19 at 1pm</strong> --
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/take-your-time-quartet-jazz-ensemble" 
-                  target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-            <span class="performance-meta"><span class="badge">Take Your Time Quartet</span></span>
-          </li>
-        </ul>
-      </div>
-
-      <h3> Prior Performances</h3>
-
-      <div class="card">
-        <ul class="clean performance-list" aria-label="Recent shows">
-
-          <li>
-            <strong>2026-10-15 at 1pm</strong> --
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/take-your-time-quartet-jazz-ensemble" 
-                  target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-            <span class="performance-meta"><span class="badge">Take Your Time Quartet</span></span>
-          </li>
-          <li>
-            <strong>2026-09-17 at 1pm</strong> --
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/take-your-time-quartet-jazz-ensemble" 
-                  target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-            <span class="performance-meta"><span class="badge">Take Your Time Quartet</span></span>
-          </li>
-          <li>
-            <strong>2026-08-20 at 1pm</strong> --
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/take-your-time-quartet-jazz-ensemble" 
-                  target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-            <span class="performance-meta"><span class="badge">Take Your Time Quartet</span></span>
-            
-            
-
-          </li>
-          <li>
-            <strong>2026-07-16 at 1pm</strong> --
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/take-your-time-quartet-jazz-ensemble" 
-                  target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-            <span class="performance-meta"><span class="badge">Take Your Time Quartet</span></span>
-          </li>
-
-          <li>
-            <strong>2026-06-18 at 1pm</strong> --
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/take-your-time-quartet-jazz-ensemble" 
-                  target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-            <span class="performance-meta"><span class="badge">Take Your Time Quartet</span></span>
-          </li>
-          <li>
-            <strong>2026-05-21 at 1pm</strong> —
-            <a href="https://www.showtimestudioandcoffee.com/upcoming-events/take-your-time-quartet-jazz-ensemble" 
-                  target="_blank" rel="noopener">
-              Showtime Studio and Coffee, Roseville, MN
-            </a>
-            <span class="performance-meta"><span class="badge">Take Your Time Quartet</span></span>
-            
-            
-          </li>
-
-          <li>
-            <strong>2026-03-28</strong> —
-            Workshop Concert Series at Metronome Brewery, St. Paul, MN
-            <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
-          </li>
-
-<li class="performance-card with-photo">
-  <div class="performance-copy">
-    <strong>2026-03-21</strong> --
-    <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
-      Showtime Studio and Coffee, Roseville, MN
-    </a>
-
-    <div class="performance-meta">
-      <span class="badge secondary">Jazz Workshop Collective Ensemble</span>
+      <div><strong>Monthly residency</strong><span>Showtime Studio &amp; Coffee, Roseville, since May 2026</span></div>
+      <div><strong>Private engagements</strong><span>Most recently the Bungalow Inn, Hudson, Wisconsin</span></div>
+      <div><strong>Over 35 standards</strong><span>From bebop and blues to bossa nova and ballads</span></div>
     </div>
   </div>
 
-  <img
-    src="showtime-2026-03.jpg"
-    alt="The Ensemble performing at Showtime"
-    class="showtime-photo"
-  >
-</li>
-<li>
-            <strong>2025-10-29</strong> —
-            Workshop Concert Series at Metronome Brewery, St. Paul, MN
-            <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
-          </li>
-
-          <li>
-            <strong>2025-09-13</strong> —
-            Whistling Well Farm, Afton, MN
-            <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
-          </li>
-
-          <li>
-            <strong>2025-08-09</strong> —
-            Hoffman Family Fundraiser, Dual Citizen Brewery, St. Paul, MN
-            <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
-          </li>
-
-          <li>
-            <strong>2025-06-29</strong> —
-            Workshop Concert Series at Jazz Central Studios, St. Paul, MN
-            <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
-          </li>
-
-          <li>
-            <strong>2025-06-05</strong> —
-            Linda Pruden's Book Launch
-            <a href="https://a.co/d/91Uxzkj" target="_blank" rel="noopener">
-              From Fear to Peace: Growing Spiritually as a Dementia Caregiver
-            </a>,
-            St. Paul, MN
-            <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
-          </li>
-
-          <li>
-            <strong>2025-03-30</strong> —
-            Workshop Concert Series at Jazz Central Studios, St. Paul, MN
-            <span class="performance-meta"><span class="badge secondary">Jazz Workshop Collective Ensemble</span></span>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="media">
+  <section class="band" id="events">
     <div class="wrap">
-      <h2 class="section-title">Recordings</h2>
-
-      <p class="lede">
-        Listen to performance recordings from each group.
-      </p>
-
-      <div class="media-grid">
-
-      <article class="card media-item">
-        <h3><span class="badge">Quartet</span>Take Your Time Quartet</h3>
-
-        <div class="track">
-          <h4><em>Autumn Leaves</em></h4>
-          <p class="muted">Quartet recording</p>
-
-          <video controls preload="none" playsinline width="100%">
-            <source src="Take Your Time Autumn Leaves.MP4" type="video/mp4" />
-            Your browser does not support the video element.
-          </video>
-        </div>
-
-        <div class="track">
-          <h4><em>Blue Bossa</em></h4>
-          <p class="muted">Quartet recording</p>
-
-          <video controls preload="none" playsinline width="100%">
-            <source src="Take Your Time Blue Bossa.MP4" type="video/mp4" />
-            Your browser does not support the video element.
-          </video>
-        </div>
-      </article>
-        <article class="card media-item">
-          <h3><span class="badge secondary">Ensemble</span>Jazz Workshop Collective Ensemble</h3>
-
-          <div class="track">
-            <h4><em>All of Me</em></h4>
-            <p>
-              Recorded live at
-              <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
-                Showtime Studio and Coffee, Roseville, MN
-              </a>
-            </p>
-            <audio controls preload="none">
-              <source src="All-of-Me.mp3" type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-
-          <div class="track">
-            <h4><em>Autumn Leaves</em></h4>
-            <p>
-              Recorded live at
-              <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
-                Showtime Studio and Coffee, Roseville, MN
-              </a>
-            </p>
-            <audio controls preload="none">
-              <source src="Autumn-Leaves.mp3" type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-
-          <div class="track">
-            <h4><em>Sweet Georgia Brown</em></h4>
-            <p>
-              Recorded live at
-              <a href="https://www.showtimestudioandcoffee.com/upcoming-events/jazz-workshop-collective" target="_blank" rel="noopener">
-                Showtime Studio and Coffee, Roseville, MN
-              </a>
-            </p>
-            <audio controls preload="none">
-              <source src="Sweet-Georgia-Brown.mp3" type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-          </div>
+      <div class="head">
+        <p class="eyebrow">For your event</p>
+        <h2>Music that sets the tone, then lets the room talk.</h2>
+      </div>
+      <div class="events">
+        <article>
+          <h3>Corporate events</h3>
+          <p>Client receptions, holiday parties, award dinners and conference evenings. We work to your run of show, break when you need the room, and drop out cleanly for toasts and remarks.</p>
         </article>
-
+        <article>
+          <h3>Private celebrations</h3>
+          <p>Milestone birthdays, anniversaries and parties at home or at a venue. Tell us the songs that matter to you and we will work them into the evening.</p>
+        </article>
+        <article>
+          <h3>Venues &amp; restaurants</h3>
+          <p>Supper clubs, restaurants, breweries and concert series. Our monthly residency at Showtime Studio &amp; Coffee has run every third Thursday since May 2026.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <section id="coach">
+  <section class="band alt" id="formats">
     <div class="wrap">
-      <h2 class="section-title">Coach</h2>
+      <div class="head">
+        <p class="eyebrow">Formats</p>
+        <h2>Sized to the room.</h2>
+        <p class="lede">Every format plays the same book with the same musicians, so the sound stays consistent from a small dinner to a full reception.</p>
+      </div>
+      <div class="formats">
+        <article>
+          <h3>Trio</h3>
+          <p class="who">Saxophone, guitar, bass</p>
+          <p>Light and conversational. Suited to dinners, gallery openings and cocktail hours in smaller rooms.</p>
+        </article>
+        <article>
+          <h3>Quartet</h3>
+          <p class="who">Saxophone, guitar, bass, drums</p>
+          <p>The full band. For receptions and parties where guests mingle, linger, and sometimes dance.</p>
+        </article>
+        <article>
+          <h3>Quartet with vocals</h3>
+          <p class="who">The quartet plus a singer</p>
+          <p>Adds the songs guests know by heart: The Girl from Ipanema, Georgia on My Mind, Fly Me to the Moon.</p>
+        </article>
+      </div>
+      <ul class="expect" aria-label="What to expect">
+        <li>Sets of about 45 minutes, with short breaks</li>
+        <li>Volume kept to conversation level on request</li>
+        <li>Requests welcome with two weeks&rsquo; notice</li>
+        <li>Recorded music during breaks if you would like it</li>
+      </ul>
+    </div>
+  </section>
 
-      <div class="coach-block">
-        <div class="coach-photo">
-          <img src="IMG_0089.jpeg" alt="Chris Bates coaching The Jazz Workshop Collective">
+  <section class="band" id="listen">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Listen</p>
+        <h2>Hear the band.</h2>
+      </div>
+      <div class="listen">
+        <div class="clip">
+          <video controls preload="none" playsinline poster="poster-autumn-leaves.jpg">
+            <source src="Take%20Your%20Time%20Autumn%20Leaves.MP4" type="video/mp4">
+          </video>
+          <div class="meta">Autumn Leaves<span>Live at Showtime Studio &amp; Coffee</span></div>
         </div>
-
-        <div class="coach-text">
-          <p>
-            Coached by
-            <a href="https://doublebates.com/" target="_blank" rel="noopener">Chris Bates</a>,
-            bassist, composer, and educator.
-          </p>
-
-          <p>
-            <strong>The Jazz Workshop Collective</strong> was formed at
-            <a href="https://www.northstarjazzworkshops.com" target="_blank" rel="noopener">North Star Jazz Workshops</a>,
-            where collaboration, listening, and exploration of the jazz tradition are at the heart of the program.
-          </p>
+        <div class="clip">
+          <video controls preload="none" playsinline poster="poster-blue-bossa.jpg">
+            <source src="Take%20Your%20Time%20Blue%20Bossa.MP4" type="video/mp4">
+          </video>
+          <div class="meta">Blue Bossa<span>Live at Showtime Studio &amp; Coffee</span></div>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="band alt" id="repertoire">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Repertoire</p>
+        <h2>A sample of the book.</h2>
+        <p class="lede">Drawn from recent sets. We tailor each evening&rsquo;s list to the occasion, and requests are welcome.</p>
+      </div>
+      <div class="rep">
+        <div>
+          <h3>Swing &amp; bebop</h3>
+          <ul>
+            <li>All of Me</li>
+            <li>Autumn Leaves</li>
+            <li>Have You Met Miss Jones?</li>
+            <li>Oleo</li>
+            <li>On Green Dolphin Street</li>
+            <li>Sweet Georgia Brown</li>
+            <li>There Will Never Be Another You</li>
+            <li>Yardbird Suite</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Bossa &amp; Latin</h3>
+          <ul>
+            <li>Black Orpheus</li>
+            <li>Blue Bossa</li>
+            <li>Caravan</li>
+            <li>The Girl from Ipanema<small>vocal</small></li>
+            <li>Softly, as in a Morning Sunrise</li>
+            <li>St. Thomas</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Ballads &amp; waltzes</h3>
+          <ul>
+            <li>Alice in Wonderland</li>
+            <li>Georgia on My Mind<small>vocal</small></li>
+            <li>Misty</li>
+            <li>My Funny Valentine</li>
+            <li>Someday My Prince Will Come</li>
+            <li>Stella by Starlight</li>
+            <li>When You Wish Upon a Star</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Blues &amp; groove</h3>
+          <ul>
+            <li>Back at the Chicken Shack</li>
+            <li>Blue Monk</li>
+            <li>Cantaloupe Island</li>
+            <li>Footprints</li>
+            <li>Maiden Voyage</li>
+            <li>Mr. P.C.</li>
+            <li>Now&rsquo;s the Time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="band">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">The band</p>
+        <h2>Four players, one conversation.</h2>
+      </div>
+      <div class="players">
+        <article>
+          <h3>Curt Bergmann</h3>
+          <p class="inst">Alto saxophone · leader</p>
+          <p>A St. Paul saxophonist whose playing favors melody, swing and space. Curt also plays with Accent Deluxe and the Minnesota State Band. <a href="https://curtbergmann.com/">curtbergmann.com</a></p>
+        </article>
+        <article>
+          <h3>John Pohl</h3>
+          <p class="inst">Guitar</p>
+          <p>John Pohl plays guitar in Take Your Time and in the Jazz Workshop Collective. He carries the melody on tunes like Stella by Starlight and There Will Never Be Another You, and his comping gives the band its warmth.</p>
+        </article>
+        <article>
+          <h3>Maria Meade</h3>
+          <p class="inst">Bass · vocals</p>
+          <p>Maria Meade is a longtime rock and roll bassist who has recently turned to jazz. She holds down the bass and sings the band&rsquo;s vocal features, from Georgia on My Mind to The Girl from Ipanema, and still plays with Twin Cities rock and roll groups.</p>
+        </article>
+        <article>
+          <h3>Jon Norstad</h3>
+          <p class="inst">Drums</p>
+          <p>Jon Norstad has played jazz with saxophonist Dick Oatts and toured a five-state region with blues bands. He moves easily from a brushed ballad to a hard-swinging Oleo, and his drum solo opens the band&rsquo;s Caravan.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="performances">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Public dates</p>
+        <h2>Hear us in person.</h2>
+        <p class="lede">Every third Thursday, 1 to 2:30 p.m., at <a href="https://www.showtimestudioandcoffee.com/upcoming-events" target="_blank" rel="noopener">Showtime Studio &amp; Coffee</a> in Roseville. Free admission.</p>
+      </div>
+      <ul class="dates">
+        <li><time datetime="2026-11-19T13:00">Thu, Nov 19 · 1 p.m.</time><span>Showtime Studio &amp; Coffee, Roseville, MN</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="book">
+    <div class="wrap book">
+      <aside>
+        <p class="eyebrow">Booking</p>
+        <h2>Book the band for your event.</h2>
+        <p>Send the details and we will hold your date while we put together a quote for the format that fits. You will hear back within two days.</p>
+        <p>Prefer email?</p>
+        <p class="addr"><a href="mailto:booking@jazzcombo.org">booking@jazzcombo.org</a></p>
+      </aside>
+      <form class="inquiry" id="inquiry">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required maxlength="120"></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required maxlength="200"></div>
+        <div class="field"><label for="f-phone">Phone <span class="opt">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="40"></div>
+        <div class="field"><label for="f-date">Event date</label><input id="f-date" name="date" type="date"></div>
+        <div class="field"><label for="f-type">Event type</label>
+          <select id="f-type" name="type">
+            <option>Corporate event</option>
+            <option>Private celebration</option>
+            <option>Venue or restaurant</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-format">Format</label>
+          <select id="f-format" name="format">
+            <option>Not sure yet</option>
+            <option>Trio</option>
+            <option>Quartet</option>
+            <option>Quartet with vocals</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-venue">Venue and city</label><input id="f-venue" name="venue" maxlength="200"></div>
+        <div class="field"><label for="f-guests">Guests <span class="opt">(approx.)</span></label><input id="f-guests" name="guests" inputmode="numeric" maxlength="20"></div>
+        <div class="field full"><label for="f-budget">Budget <span class="opt">(optional)</span></label><input id="f-budget" name="budget" maxlength="100"></div>
+        <div class="field full"><label for="f-msg">Times and anything else</label><textarea id="f-msg" name="message" maxlength="4000" placeholder="For example: two hours during the reception, 6 to 8 p.m., with a few short remarks around 7."></textarea></div>
+        <div class="field trap" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="formfoot">
+          <button class="btn" type="submit" id="f-send">Send inquiry</button>
+          <output id="f-out" for="f-name f-email" aria-live="polite"></output>
+        </div>
+      </form>
+    </div>
+  </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <p>© <span id="year"></span> Curt Bergmann. All rights reserved.</p>
-    <p>Booking &amp; inquiries: <a href="mailto:jazzworkshopcollective@gmail.com">jazzworkshopcollective@gmail.com</a></p>
+    <div class="sub">
+      <span class="wordmark">Take Your Time</span>
+      <p>Live jazz for corporate events, private celebrations and venues in the Twin Cities.</p>
+      <p><a href="mailto:booking@jazzcombo.org">booking@jazzcombo.org</a></p>
+    </div>
+    <form class="sub" action="https://buttondown.com/api/emails/embed-subscribe/curt" method="post" target="_blank">
+      <label for="bd-email">Public performances by email</label>
+      <div><input type="email" name="email" id="bd-email" placeholder="you@example.com" autocomplete="email" required><button class="btn" type="submit">Subscribe</button></div>
+    </form>
+    <div class="small">
+      <span>Members of Take Your Time also perform with <a href="https://collective.jazzcombo.org/">the Jazz Workshop Collective</a>.</span>
+      <span>&copy; 2026 Curt Bergmann</span>
+    </div>
   </div>
 </footer>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  function placeOverlay() {
-    const hero   = document.querySelector('header.hero');
-    const media  = hero?.querySelector('.hero-media');
-    const img    = media?.querySelector('img');
-    const brand  = hero?.querySelector('.brand');
-    if (!hero || !media || !img || !brand) return;
-
-    const isPortrait = window.matchMedia('(orientation: portrait)').matches && window.innerWidth <= 500;
-
-    if (!isPortrait) {
-      brand.style.bottom = '1.25rem';
-      return;
-    }
-
-    if (!img.complete || !img.naturalWidth || !img.naturalHeight) {
-      img.addEventListener('load', placeOverlay, { once: true });
-      return;
-    }
-
-    const rect = media.getBoundingClientRect();
-    const cw = rect.width;
-    const ch = rect.height;
-    const iw = img.naturalWidth;
-    const ih = img.naturalHeight;
-
-    const scale = Math.min(cw / iw, ch / ih);
-    const renderedH = ih * scale;
-    const letterbox = (ch - renderedH) / 2;
-
-    const offset = 12;
-    const bottom = Math.max(letterbox + offset, 8);
-    brand.style.bottom = bottom + 'px';
-  }
-
-  window.addEventListener('resize', placeOverlay);
-  window.addEventListener('orientationchange', placeOverlay);
-  document.addEventListener('DOMContentLoaded', placeOverlay);
+  (function () {
+    var ENDPOINT = 'https://jazzcombo-booking.vercel.app/api/inquiry';
+    var form = document.getElementById('inquiry');
+    var out = document.getElementById('f-out');
+    var send = document.getElementById('f-send');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      var data = {};
+      new FormData(form).forEach(function (v, k) { data[k] = String(v).trim(); });
+      send.disabled = true;
+      out.textContent = 'Sending…';
+      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); })
+        .then(function () {
+          form.reset();
+          out.textContent = 'Thank you. Your inquiry is on its way, and we will reply within two days.';
+        })
+        .catch(function () {
+          out.textContent = 'That did not go through. Please email booking@jazzcombo.org and we will reply within two days.';
+        })
+        .finally(function () { send.disabled = false; });
+    });
+  })();
 </script>
-
 </body>
 </html>
