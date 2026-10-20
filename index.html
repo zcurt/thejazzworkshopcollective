@@ -114,6 +114,12 @@
   @media (max-width: 480px) { .wordmark { white-space: normal; font-size: 1.25rem; line-height: 1.1; } .wordmark .mark { width: 2.6rem; height: 2.6rem; } }
 
   /* hero */
+  .next-gig { background: var(--ink); color: #f3efe6; font-size: 0.92rem; }
+  .next-gig .wrap { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.9rem; padding-block: 0.7rem; }
+  .next-gig strong { color: #e0c083; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.78rem; }
+  .next-gig a { color: #f3efe6; text-decoration: underline; text-underline-offset: 3px; }
+  .next-gig a:hover { color: #e0c083; }
+  .next-gig[hidden] { display: none; }
   .hero .wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-block: clamp(2.5rem, 7vw, 5.5rem); }
   .hero-text { display: grid; gap: 1.4rem; min-width: 0; }
   .hero h1 { font-size: clamp(2.4rem, 5.2vw, 3.9rem); line-height: 1.04; letter-spacing: -0.01em; }
@@ -254,6 +260,9 @@
 </header>
 
 <main id="top">
+  <aside class="next-gig" id="next-gig" aria-label="Next performance" hidden>
+    <div class="wrap"><strong>Next performance</strong><span id="next-gig-text"></span><a href="#performances">See all dates</a></div>
+  </aside>
   <section class="hero">
     <div class="wrap">
       <div class="hero-text">
@@ -598,6 +607,12 @@
     }
     fetch(FEED).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
       fill(up, d.upcoming || [], true, 'New dates are coming soon. Subscribe below to hear first.');
+      var next = (d.upcoming || [])[0], bar = document.getElementById('next-gig');
+      if (next && bar) {
+        document.getElementById('next-gig-text').textContent =
+          [next.label, [next.venue, next.town].filter(Boolean).join(', ')].filter(Boolean).join(' · ');
+        bar.hidden = false;
+      }
       if ((d.past || []).length) fill(past, d.past.slice(0, 8), false);
     }).catch(function () {});
   })();
