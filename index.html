@@ -457,12 +457,12 @@
         <h2>Hear us in person.</h2>
         <p class="lede">Every third Thursday, 1 to 2:30 p.m., at <a href="https://www.showtimestudioandcoffee.com/upcoming-events" target="_blank" rel="noopener">Showtime Studio &amp; Coffee</a> in Roseville. Free admission.</p>
       </div>
-      <ul class="dates">
+      <ul class="dates" id="gigs-upcoming">
         <li><time datetime="2026-11-19T13:00">Thu, Nov 19 · 1 p.m.</time><span>Showtime Studio &amp; Coffee, Roseville, MN</span></li>
       </ul>
       <div class="history">
         <h3>Recent performances</h3>
-        <ul class="dates">
+        <ul class="dates" id="gigs-past">
           <li><time datetime="2026-10-18">Oct 18, 2026</time><span>Bungalow Inn, Hudson, WI<small>Private party and public performance</small></span></li>
           <li><time datetime="2026-10-15">Oct 15, 2026</time><span>Showtime Studio &amp; Coffee, Roseville, MN</span></li>
           <li><time datetime="2026-09-17">Sep 17, 2026</time><span>Showtime Studio &amp; Coffee, Roseville, MN</span></li>
@@ -561,6 +561,45 @@
         })
         .finally(function () { send.disabled = false; });
     });
+  })();
+</script>
+<script>
+  // Performances come from the band's members site (SideHub): the gigs a leader listed
+  // there as public. The lists above stay as they are if it can't be reached.
+  (function () {
+    var FEED = 'https://band.jazzcombo.org/api/public/takeyourtime/gigs.json';
+    var up = document.getElementById('gigs-upcoming');
+    var past = document.getElementById('gigs-past');
+    if (!up || !past || !window.fetch) return;
+    function item(g, withTime) {
+      var li = document.createElement('li');
+      var t = document.createElement('time');
+      t.setAttribute('datetime', withTime ? g.starts_at : g.date);
+      t.textContent = g.label;
+      var where = document.createElement('span');
+      where.textContent = [g.venue, g.town].filter(Boolean).join(', ') || g.title || '';
+      if (g.title && g.venue && !/residency/i.test(g.title)) {
+        var note = document.createElement('small');
+        note.textContent = g.title;
+        where.appendChild(note);
+      }
+      li.appendChild(t); li.appendChild(where);
+      return li;
+    }
+    function fill(list, gigs, withTime, empty) {
+      list.textContent = '';
+      if (!gigs.length && empty) {
+        var li = document.createElement('li');
+        li.style.display = 'block';
+        li.textContent = empty;
+        list.appendChild(li);
+      }
+      gigs.forEach(function (g) { list.appendChild(item(g, withTime)); });
+    }
+    fetch(FEED).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
+      fill(up, d.upcoming || [], true, 'New dates are coming soon. Subscribe below to hear first.');
+      if ((d.past || []).length) fill(past, d.past.slice(0, 8), false);
+    }).catch(function () {});
   })();
 </script>
 </body>
